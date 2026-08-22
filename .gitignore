@@ -15,6 +15,7 @@
 
 # next.js
 /.next/
+/.next_old/
 /out/
 
 # production
@@ -30,8 +31,9 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# env files: 本地密钥忽略，示例模板保留
+.env*.local
+.env
 
 # vercel
 .vercel
