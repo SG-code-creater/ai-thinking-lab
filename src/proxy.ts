@@ -18,7 +18,10 @@ export const config = {
     '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
     // API 路由始终跑
     '/(api|trpc)(.*)',
-    // Clerk 前端 API 代理路径始终跑（默认 /__clerk）
+    // Clerk 前端 API 代理路径（必须显式列出，否则被第一行当成 .js 静态文件排除）：
+    //  - /__clerk：@clerk/nextjs v7+ / @clerk/shared DEFAULT_PROXY_PATH（双下划线）
+    //  - /_clerk：旧版 Clerk 客户端可能仍在用的路径（单下划线，兜底兼容）
     '/__clerk/(.*)',
+    '/_clerk/(.*)',
   ],
 }
