@@ -12,11 +12,9 @@ type Msg = {
 export default function ChatView({
   sessionId,
   participantId,
-  armName,
 }: {
   sessionId: string;
   participantId: string;
-  armName: string;
 }) {
   const [messages, setMessages] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
@@ -139,7 +137,7 @@ export default function ChatView({
       <div className="scroll-thin flex-1 space-y-4 overflow-y-auto px-4 py-6">
         {messages.length === 0 && (
           <div className="mx-auto max-w-2xl rounded-xl border border-zinc-200 bg-white p-4 text-sm text-zinc-500">
-            开始描述你遇到的困扰或思考，{armName} 会陪你一起梳理。
+            开始描述你遇到的困扰或思考，AI 会陪你一起梳理。
           </div>
         )}
         {messages.map((m, i) => (

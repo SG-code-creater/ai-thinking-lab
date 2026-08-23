@@ -67,10 +67,10 @@ export default function SessionPage() {
     <div className="flex h-screen flex-col bg-zinc-50">
       <header className="flex items-center justify-between border-b border-zinc-200 bg-white px-4 py-3">
         <div>
-          <div className="text-sm font-semibold text-zinc-900">
-            {info.armName}
+          <div className="text-sm font-semibold text-zinc-900">思考会话</div>
+          <div className="text-xs text-zinc-500">
+            把你的真实处境写下来，尽量具体。
           </div>
-          <div className="text-xs text-zinc-500">{info.description}</div>
         </div>
         <button
           onClick={exit}
@@ -84,7 +84,6 @@ export default function SessionPage() {
           <ChatView
             sessionId={sessionId}
             participantId={participantId}
-            armName={info.armName}
           />
         ) : (
           <DocCollector sessionId={sessionId} participantId={participantId} />

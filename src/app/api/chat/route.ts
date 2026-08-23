@@ -51,9 +51,12 @@ export async function POST(req: NextRequest) {
 
     const msg = String(message).slice(0, 4000);
 
-    // 范围守卫：超出议题则拦截并提示
+    // 范围守卫：超出议题则拦截并提示（传入最近上下文，避免对相关回复误判）
     if (arm.scopeGuarded) {
-      const scope = await checkScope(msg);
+      const recentForGuard = (
+        await getMessages(sessionId)
+      ).slice(-4) as { role: "user" | "assistant"; content: string }[];
+      const scope = await checkScope(msg, recentForGuard);
       if (!scope.inScope) {
         await appendMessage(sessionId, "user", msg, { blocked: true });
         await appendMessage(sessionId, "assistant", BLOCKED_TEXT, {

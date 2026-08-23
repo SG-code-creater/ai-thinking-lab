@@ -1,15 +1,11 @@
 import { clerkMiddleware } from '@clerk/nextjs/server'
 
-// 暴露 /__clerk/* 前端 API 代理（让 Clerk JS 能从应用自身域加载，并维护会话状态）。
-// 自定义鉴权（lib/auth.ts 的 verifyToken + requireAdmin）保留不动。
+// 应用已绑定到 *.xuebox.me 子域（与 Clerk FAPI 域 clerk.xuebox.me 同 eTLD+1）。
+// 因此 clerkMiddleware() 的 auto-proxy 不再触发（auto-proxy 只对 *.vercel.app 生效），
+// 客户端直连 clerk.xuebox.me，无需 /__clerk 代理路径，CORS 也无虞。
 //
-// 注意：Next.js 16 把 middleware 文件约定改名为 proxy（旧的 middleware 已弃用，
-// 仍能 build 但 /__clerk/* 代理在 deprecated 模式下不工作）。
-//
-// matcher 第三行 '/__clerk/(.*)' 必须显式列出——Clerk 文档原话："Ensure your middleware
-// matcher includes the proxy path (by default, /__clerk) so proxy requests are handled
-// by the middleware." 没有它，/__clerk/npm/.../clerk.browser.js 会被第一行当成 .js
-// 静态文件排除，proxy 不跑，Next.js 404，浏览器报 "Failed to load Clerk JS"。
+// 仅保留 clerkMiddleware() 服务端鉴权（lib/auth.ts 的 verifyToken + requireAdmin、
+// api/chat 范围守卫、api/clerk-webhook 校验都依赖它在服务端跑）。
 export default clerkMiddleware()
 
 export const config = {
@@ -18,10 +14,5 @@ export const config = {
     '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
     // API 路由始终跑
     '/(api|trpc)(.*)',
-    // Clerk 前端 API 代理路径（必须显式列出，否则被第一行当成 .js 静态文件排除）：
-    //  - /__clerk：@clerk/nextjs v7+ / @clerk/shared DEFAULT_PROXY_PATH（双下划线）
-    //  - /_clerk：旧版 Clerk 客户端可能仍在用的路径（单下划线，兜底兼容）
-    '/__clerk/(.*)',
-    '/_clerk/(.*)',
   ],
 }
