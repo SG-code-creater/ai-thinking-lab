@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAdminEmailFromReq, isAuthorizedAdmin } from "@/lib/auth";
-import { createCodes, listCodes } from "@/lib/db";
+import { createCodes, listCodes, deleteUnusedCodes } from "@/lib/db";
 import { ARM_LIST } from "@/lib/arms";
 import type { ArmCode } from "@/lib/arms";
 
@@ -36,6 +36,31 @@ export async function POST(req: NextRequest) {
   try {
     const codes = await createCodes(arm as ArmCode, n, label);
     return NextResponse.json({ ok: true, codes });
+  } catch (e: any) {
+    return NextResponse.json(
+      { ok: false, error: e?.message || "服务器错误" },
+      { status: 500 },
+    );
+  }
+}
+
+/** 仅删除「已用 0 次」的分组码（?unused=1 才生效，强烈默认安全） */
+export async function DELETE(req: NextRequest) {
+  const email = await getAdminEmailFromReq(req);
+  if (!isAuthorizedAdmin(email))
+    return NextResponse.json({ ok: false, error: "未授权" }, { status: 403 });
+
+  const url = new URL(req.url);
+  if (url.searchParams.get("unused") !== "1") {
+    return NextResponse.json(
+      { ok: false, error: "需要 ?unused=1 才会执行（双重保险）" },
+      { status: 400 },
+    );
+  }
+
+  try {
+    const deleted = await deleteUnusedCodes();
+    return NextResponse.json({ ok: true, deleted });
   } catch (e: any) {
     return NextResponse.json(
       { ok: false, error: e?.message || "服务器错误" },

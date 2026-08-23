@@ -30,7 +30,9 @@ export default function AdminPage() {
 function AdminInner() {
   const { isSignedIn, user, isLoaded } = useUser();
   const [activeArm, setActiveArm] = useState<string>("none");
-  const [armGen, setArmGen] = useState("socratic");
+  const [armGen, setArmGen] = useState<string>("socratic");
+  // armGenSynced = true 后下拉框才真正被允许编辑，避免「Loaded 之前看到默认 socratic」的误操作
+  const [armGenSynced, setArmGenSynced] = useState(false);
   const [count, setCount] = useState(10);
   const [codes, setCodes] = useState<any[]>([]);
   const [newCodes, setNewCodes] = useState<string[]>([]);
@@ -55,6 +57,15 @@ function AdminInner() {
     }
   }, [isSignedIn]);
 
+  // 切臂后，把下拉框的 armGen 跟着切到当前激活臂
+  // （设计：分组码归属 = 当前激活臂，强行锁定）
+  useEffect(() => {
+    if (activeArm && activeArm !== "none") {
+      setArmGen(activeArm);
+    }
+    setArmGenSynced(true);
+  }, [activeArm]);
+
   async function switchArm(arm: string) {
     setBusy(true);
     setMsg(null);
@@ -72,6 +83,10 @@ function AdminInner() {
   }
 
   async function genCodes() {
+    if (activeArm === "none") {
+      setMsg("请先在「实验臂开关」中打开一个实验臂，再生成分组码");
+      return;
+    }
     setBusy(true);
     setMsg(null);
     const r = await fetch("/api/admin/codes", {
@@ -86,6 +101,27 @@ function AdminInner() {
       setMsg(`已生成 ${d.codes.length} 个分组码`);
     } else setMsg("生成失败：" + (d.error || ""));
     setBusy(false);
+  }
+
+  async function cleanUnusedCodes() {
+    const yes = window.confirm(
+      "确认删除所有「已用 0 次」的分组码？\n进行中（已用 > 0）的码不会被删除。",
+    );
+    if (!yes) return;
+    setBusy(true);
+    setMsg(null);
+    try {
+      const r = await fetch("/api/admin/codes?unused=1", { method: "DELETE" });
+      const d = await r.json();
+      if (d.ok) {
+        setMsg(`已清理 ${d.deleted} 个未使用的分组码`);
+        loadCodes();
+      } else setMsg("清理失败：" + (d.error || ""));
+    } catch (e: any) {
+      setMsg("清理失败：" + (e?.message || "网络错误"));
+    } finally {
+      setBusy(false);
+    }
   }
 
   async function signOut() {
@@ -164,13 +200,20 @@ function AdminInner() {
         {/* 分组码生成 */}
         <section className="rounded-2xl border border-zinc-200 bg-white p-5">
           <h2 className="text-sm font-semibold text-zinc-900">生成分组码</h2>
+          <p className="mt-1 text-xs text-zinc-500">
+            生成的码将自动绑定到当前激活臂：
+            <span className="font-medium text-indigo-600">
+              {ARM_OPTIONS.find((a) => a.code === activeArm)?.name ?? "—"}
+            </span>
+            。切臂后，码归属臂会一起切换。
+          </p>
           <div className="mt-3 flex flex-wrap items-end gap-3">
             <label className="text-xs text-zinc-500">
-              实验臂
+              实验臂（自动跟随激活臂）
               <select
                 value={armGen}
-                onChange={(e) => setArmGen(e.target.value)}
-                className="mt-1 block w-full rounded-lg border border-zinc-300 px-2 py-1.5 text-sm text-zinc-900"
+                disabled
+                className="mt-1 block w-full cursor-not-allowed rounded-lg border border-zinc-200 bg-zinc-50 px-2 py-1.5 text-sm text-zinc-500"
               >
                 <option value="socratic">臂1 · 苏格拉底式引导</option>
                 <option value="free">臂2 · 自由问答</option>
@@ -190,7 +233,7 @@ function AdminInner() {
             </label>
             <button
               onClick={genCodes}
-              disabled={busy}
+              disabled={busy || activeArm === "none"}
               className="rounded-lg bg-indigo-600 px-4 py-2 text-sm text-white disabled:opacity-40"
             >
               生成
@@ -215,9 +258,19 @@ function AdminInner() {
 
         {/* 分组码列表 */}
         <section className="rounded-2xl border border-zinc-200 bg-white p-5">
-          <h2 className="text-sm font-semibold text-zinc-900">
-            分组码列表（{codes.length}）
-          </h2>
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm font-semibold text-zinc-900">
+              分组码列表（{codes.length}）
+            </h2>
+            <button
+              onClick={cleanUnusedCodes}
+              disabled={busy || codes.every((c) => (c.used_count || 0) > 0)}
+              className="rounded-lg border border-rose-200 px-3 py-1.5 text-xs text-rose-600 hover:bg-rose-50 disabled:cursor-not-allowed disabled:opacity-40"
+              title="仅删除 已用 0 次 的分组码；进行中（已用 > 0）的码保留"
+            >
+              清除未使用的码
+            </button>
+          </div>
           <div className="scroll-thin mt-3 max-h-64 space-y-1 overflow-y-auto">
             {codes.length === 0 && (
               <p className="text-xs text-zinc-400">暂无分组码</p>

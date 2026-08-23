@@ -186,6 +186,18 @@ export async function listCodes(): Promise<any[]> {
   return (data as any[]) ?? [];
 }
 
+/** 删除所有未使用的分组码（used_count = 0 或 null），返回删除数量 */
+export async function deleteUnusedCodes(): Promise<number> {
+  const db = requireDb();
+  const { data, error } = await db
+    .from("group_codes")
+    .delete()
+    .or("used_count.eq.0,used_count.is.null")
+    .select("code");
+  if (error) throw new DbError(error.message);
+  return data?.length ?? 0;
+}
+
 /** 保存一条上传/粘贴记录，返回 id */
 export async function saveUpload(
   participantId: string,
