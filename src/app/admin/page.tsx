@@ -359,6 +359,9 @@ function AdminInner() {
           <p className="mt-1 text-xs text-zinc-500">
             添加本轮实验的背景说明与限制条件，下方实时显示当前已配置的全部规则。
           </p>
+          <p className="mt-2 rounded-lg bg-amber-50 px-3 py-2 text-xs text-amber-700">
+            说明：「测试背景」会作为开场说明卡展示给参与者；「限制条件」会注入 AI 的系统提示词、约束智能体行为，参与者不可见。
+          </p>
 
           {/* 添加表单 */}
           <div className="mt-3 space-y-3">

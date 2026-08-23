@@ -303,6 +303,18 @@ export async function getParticipantRules(): Promise<any[]> {
   return (data as any[]) ?? [];
 }
 
+/** 读取所有「限制条件」类规则（供注入 AI 系统提示词，约束智能体行为；参与者不可见） */
+export async function getConstraintRules(): Promise<string[]> {
+  const db = requireDb();
+  const { data, error } = await db
+    .from("rules")
+    .select("content")
+    .eq("kind", "constraint")
+    .order("created_at", { ascending: true });
+  if (error) throw new DbError(error.message);
+  return ((data as any[]) ?? []).map((r) => String(r.content));
+}
+
 /** 删除一条规则（按 id） */
 export async function deleteRule(id: string): Promise<void> {
   const db = requireDb();
