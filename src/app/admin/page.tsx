@@ -39,6 +39,14 @@ function AdminInner() {
   const [msg, setMsg] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
+  // 实验规则（测试背景 / 限制条件）
+  const [rules, setRules] = useState<any[]>([]);
+  const [ruleKind, setRuleKind] = useState<"background" | "constraint">(
+    "background",
+  );
+  const [ruleText, setRuleText] = useState("");
+  const [ruleBusy, setRuleBusy] = useState(false);
+
   async function loadMeta() {
     const r = await fetch("/api/admin/arm");
     const d = await r.json();
@@ -49,11 +57,17 @@ function AdminInner() {
     const d = await r.json();
     if (d.ok) setCodes(d.codes);
   }
+  async function loadRules() {
+    const r = await fetch("/api/admin/rules");
+    const d = await r.json();
+    if (d.ok) setRules(d.rules);
+  }
 
   useEffect(() => {
     if (isSignedIn) {
       loadMeta();
       loadCodes();
+      loadRules();
     }
   }, [isSignedIn]);
 
@@ -127,6 +141,53 @@ function AdminInner() {
   async function signOut() {
     await fetch("/api/sign-out", { method: "POST" });
     window.location.href = "/";
+  }
+
+  async function addRule() {
+    const text = ruleText.trim();
+    if (!text) {
+      setMsg("规则内容不能为空");
+      return;
+    }
+    setRuleBusy(true);
+    setMsg(null);
+    try {
+      const r = await fetch("/api/admin/rules", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ kind: ruleKind, content: text }),
+      });
+      const d = await r.json();
+      if (d.ok) {
+        setRuleText("");
+        await loadRules();
+        setMsg("已添加规则");
+      } else setMsg("添加失败：" + (d.error || ""));
+    } catch (e: any) {
+      setMsg("添加失败：" + (e?.message || "网络错误"));
+    } finally {
+      setRuleBusy(false);
+    }
+  }
+
+  async function deleteRuleItem(id: string) {
+    if (!window.confirm("确认删除这条规则？")) return;
+    setRuleBusy(true);
+    setMsg(null);
+    try {
+      const r = await fetch(`/api/admin/rules?id=${encodeURIComponent(id)}`, {
+        method: "DELETE",
+      });
+      const d = await r.json();
+      if (d.ok) {
+        await loadRules();
+        setMsg("已删除规则");
+      } else setMsg("删除失败：" + (d.error || ""));
+    } catch (e: any) {
+      setMsg("删除失败：" + (e?.message || "网络错误"));
+    } finally {
+      setRuleBusy(false);
+    }
   }
 
   if (!isLoaded)
@@ -287,6 +348,100 @@ function AdminInner() {
                 <span className="text-zinc-400">已用 {c.used_count || 0}</span>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* 实验规则（测试背景 / 限制条件） */}
+        <section className="rounded-2xl border border-zinc-200 bg-white p-5">
+          <h2 className="text-sm font-semibold text-zinc-900">
+            实验规则（测试背景 / 限制条件）
+          </h2>
+          <p className="mt-1 text-xs text-zinc-500">
+            添加本轮实验的背景说明与限制条件，下方实时显示当前已配置的全部规则。
+          </p>
+
+          {/* 添加表单 */}
+          <div className="mt-3 space-y-3">
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => setRuleKind("background")}
+                className={[
+                  "rounded-lg px-3 py-1.5 text-sm transition",
+                  ruleKind === "background"
+                    ? "bg-indigo-600 text-white"
+                    : "border border-zinc-200 text-zinc-600 hover:bg-zinc-50",
+                ].join(" ")}
+              >
+                测试背景
+              </button>
+              <button
+                type="button"
+                onClick={() => setRuleKind("constraint")}
+                className={[
+                  "rounded-lg px-3 py-1.5 text-sm transition",
+                  ruleKind === "constraint"
+                    ? "bg-indigo-600 text-white"
+                    : "border border-zinc-200 text-zinc-600 hover:bg-zinc-50",
+                ].join(" ")}
+              >
+                限制条件
+              </button>
+            </div>
+            <textarea
+              value={ruleText}
+              onChange={(e) => setRuleText(e.target.value)}
+              rows={3}
+              placeholder={
+                ruleKind === "background"
+                  ? "例如：本实验围绕大学生宿舍矛盾场景，请尽量结合真实经历填写。"
+                  : "例如：不得讨论任何暴力、自伤或违法内容。"
+              }
+              className="mt-1 block w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm text-zinc-900 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+            />
+            <button
+              onClick={addRule}
+              disabled={ruleBusy}
+              className="rounded-lg bg-indigo-600 px-4 py-2 text-sm text-white disabled:opacity-40"
+            >
+              添加规则
+            </button>
+          </div>
+
+          {/* 现有规则列表 */}
+          <div className="mt-5 space-y-4">
+            {(["background", "constraint"] as const).map((k) => {
+              const items = rules.filter((r: any) => r.kind === k);
+              return (
+                <div key={k}>
+                  <div className="text-xs font-medium text-zinc-500">
+                    {k === "background" ? "测试背景" : "限制条件"}（{items.length}）
+                  </div>
+                  {items.length === 0 ? (
+                    <p className="mt-1 text-xs text-zinc-400">暂无</p>
+                  ) : (
+                    <div className="mt-1 space-y-1">
+                      {items.map((r: any) => (
+                        <div
+                          key={r.id}
+                          className="flex items-start justify-between gap-3 rounded-lg bg-zinc-50 px-3 py-2"
+                        >
+                          <span className="whitespace-pre-wrap text-xs text-zinc-700">
+                            {r.content}
+                          </span>
+                          <button
+                            onClick={() => deleteRuleItem(r.id)}
+                            className="shrink-0 text-xs text-rose-500 hover:text-rose-700"
+                          >
+                            删除
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </section>
 

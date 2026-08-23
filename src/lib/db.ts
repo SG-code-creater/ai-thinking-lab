@@ -261,3 +261,34 @@ export async function exportUploads(): Promise<any[]> {
   if (error) throw new DbError(error.message);
   return (data as any[]) ?? [];
 }
+
+// ============ 实验规则（测试背景 + 限制条件） ============
+
+export type RuleKind = "background" | "constraint";
+
+/** 列出所有实验规则（按创建时间倒序） */
+export async function listRules(): Promise<any[]> {
+  const db = requireDb();
+  const { data, error } = await db
+    .from("rules")
+    .select("id, kind, content, created_at")
+    .order("created_at", { ascending: false });
+  if (error) throw new DbError(error.message);
+  return (data as any[]) ?? [];
+}
+
+/** 新增一条规则：kind = background（测试背景）| constraint（限制条件） */
+export async function createRule(kind: RuleKind, content: string): Promise<void> {
+  const db = requireDb();
+  if (kind !== "background" && kind !== "constraint")
+    throw new DbError("非法的规则类型");
+  const { error } = await db.from("rules").insert({ kind, content });
+  if (error) throw new DbError(error.message);
+}
+
+/** 删除一条规则（按 id） */
+export async function deleteRule(id: string): Promise<void> {
+  const db = requireDb();
+  const { error } = await db.from("rules").delete().eq("id", id);
+  if (error) throw new DbError(error.message);
+}

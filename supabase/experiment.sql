@@ -81,3 +81,12 @@ create table if not exists public.uploads (
 insert into storage.buckets (id, name, public)
 values ('documents', 'documents', false)
 on conflict (id) do nothing;
+
+-- 9) rules：实验规则（测试背景 + 限制条件），仅后台管理
+create table if not exists public.rules (
+  id         uuid primary key default gen_random_uuid(),
+  kind       text not null check (kind in ('background','constraint')),
+  content    text not null,
+  created_at timestamptz default now()
+);
+create index if not exists idx_rules_kind on public.rules(kind, created_at);
