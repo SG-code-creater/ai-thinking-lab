@@ -271,19 +271,36 @@ export async function listRules(): Promise<any[]> {
   const db = requireDb();
   const { data, error } = await db
     .from("rules")
-    .select("id, kind, content, created_at")
+    .select("id, kind, content, visible_to_participant, created_at")
     .order("created_at", { ascending: false });
   if (error) throw new DbError(error.message);
   return (data as any[]) ?? [];
 }
 
-/** 新增一条规则：kind = background（测试背景）| constraint（限制条件） */
+/** 新增一条规则：kind = background（测试背景）| constraint（限制条件）。
+ *  测试背景默认对参与者可见（visible_to_participant=true），限制条件仅后台可见。 */
 export async function createRule(kind: RuleKind, content: string): Promise<void> {
   const db = requireDb();
   if (kind !== "background" && kind !== "constraint")
     throw new DbError("非法的规则类型");
-  const { error } = await db.from("rules").insert({ kind, content });
+  const { error } = await db.from("rules").insert({
+    kind,
+    content,
+    visible_to_participant: kind === "background",
+  });
   if (error) throw new DbError(error.message);
+}
+
+/** 读取对参与者可见的测试规则（供会话页开场说明，绝不返回限制条件） */
+export async function getParticipantRules(): Promise<any[]> {
+  const db = requireDb();
+  const { data, error } = await db
+    .from("rules")
+    .select("id, kind, content")
+    .eq("visible_to_participant", true)
+    .order("created_at", { ascending: true });
+  if (error) throw new DbError(error.message);
+  return (data as any[]) ?? [];
 }
 
 /** 删除一条规则（按 id） */

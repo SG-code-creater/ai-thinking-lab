@@ -20,6 +20,9 @@ export default function SessionPage() {
   const [status, setStatus] = useState<"loading" | "ready" | "bad">("loading");
   const [info, setInfo] = useState<Info>(null);
   const [participantId, setParticipantId] = useState("");
+  // 对参与者可见的测试背景规则（开场说明卡）
+  const [backgroundRules, setBackgroundRules] = useState<any[]>([]);
+  const [showRules, setShowRules] = useState(true);
 
   useEffect(() => {
     const raw = localStorage.getItem("exp_participant");
@@ -48,6 +51,13 @@ export default function SessionPage() {
         else {
           setInfo(d);
           setStatus("ready");
+          // 并行加载对参与者可见的测试背景规则
+          fetch("/api/rules")
+            .then((r) => r.json())
+            .then((rd) => {
+              if (rd.ok) setBackgroundRules(rd.rules);
+            })
+            .catch(() => {});
         }
       })
       .catch(() => setStatus("bad"));
@@ -79,6 +89,33 @@ export default function SessionPage() {
           结束并退出
         </button>
       </header>
+      {status === "ready" && backgroundRules.length > 0 && showRules && (
+        <div className="border-b border-indigo-100 bg-indigo-50 px-4 py-2.5">
+          <div className="flex items-start justify-between gap-3">
+            <div className="min-w-0 flex-1">
+              <div className="mb-1 text-xs font-medium text-indigo-700">
+                实验说明
+              </div>
+              <ul className="space-y-1">
+                {backgroundRules.map((r: any) => (
+                  <li
+                    key={r.id}
+                    className="whitespace-pre-wrap text-xs leading-relaxed text-indigo-900"
+                  >
+                    {r.content}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <button
+              onClick={() => setShowRules(false)}
+              className="shrink-0 rounded-md px-2 py-1 text-xs text-indigo-500 hover:bg-indigo-100"
+            >
+              收起
+            </button>
+          </div>
+        </div>
+      )}
       <main className="flex-1 overflow-hidden">
         {info.isAiChat ? (
           <ChatView

@@ -87,6 +87,12 @@ create table if not exists public.rules (
   id         uuid primary key default gen_random_uuid(),
   kind       text not null check (kind in ('background','constraint')),
   content    text not null,
+  visible_to_participant boolean default false,  -- 测试背景默认对参与者可见
   created_at timestamptz default now()
 );
 create index if not exists idx_rules_kind on public.rules(kind, created_at);
+create index if not exists idx_rules_visible on public.rules(visible_to_participant, created_at);
+
+-- 9.1) 已有 rules 表安全加字段（重复执行无副作用；新建库由建表语句覆盖）
+alter table if exists public.rules
+  add column if not exists visible_to_participant boolean default false;
