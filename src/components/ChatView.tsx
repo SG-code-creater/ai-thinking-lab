@@ -9,6 +9,34 @@ type Msg = {
   streaming?: boolean;
 };
 
+/**
+ * 防御性 Markdown 剥离护栏：
+ * 即便我们在 system prompt 里反复要求不要用 Markdown，模型偶尔还是会冒出来一些 ** 加粗、
+ * `#` 标题、列表之类的东西。这里把它们还原成纯文本，避免渲染出"机器味"，也避免泄露结构性步骤。
+ */
+function stripMarkdown(s: string): string {
+  return s
+    // 代码块 ```...``` 整体删除
+    .replace(/```[\s\S]*?```/g, "")
+    // 行内代码 `xx` → xx
+    .replace(/`([^`]+)`/g, "$1")
+    // 加粗 **xx** 或 __xx__ → xx
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/__([^_]+)__/g, "$1")
+    // 标题 # ## ### … 行首 → 删除
+    .replace(/^[ \t]*#{1,6}[ \t]+/gm, "")
+    // 列表 1. 2. - * + 行首 → 删除
+    .replace(/^[ \t]*(\d+[\.\)]|[-*+])[ \t]+/gm, "")
+    // 引用 > 行首 → 删除
+    .replace(/^[ \t]*>[ \t]?/gm, "")
+    // 分割线 --- 或 *** 单占一行 → 删除
+    .replace(/^[ \t]*([-*_][ \t]*){3,}[ \t]*$/gm, "")
+    // 链接 [text](url) → text
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1")
+    // 多余空行合并
+    .replace(/\n{3,}/g, "\n\n");
+}
+
 export default function ChatView({
   sessionId,
   participantId,
@@ -137,7 +165,7 @@ export default function ChatView({
       <div className="scroll-thin flex-1 space-y-4 overflow-y-auto px-4 py-6">
         {messages.length === 0 && (
           <div className="mx-auto max-w-2xl rounded-xl border border-zinc-200 bg-white p-4 text-sm text-zinc-500">
-            开始描述你遇到的困扰或思考，AI 会陪你一起梳理。
+            开始描述你遇到的困扰或思考，我会陪你一起梳理。
           </div>
         )}
         {messages.map((m, i) => (
@@ -147,7 +175,7 @@ export default function ChatView({
           >
             <div
               className={[
-                "max-w-[80%] whitespace-pre-wrap rounded-2xl px-4 py-2.5 text-sm leading-relaxed",
+                "max-w-[80%] whitespace-pre-wrap break-words rounded-2xl px-4 py-2.5 text-sm leading-relaxed",
                 m.role === "user"
                   ? "bg-indigo-600 text-white"
                   : m.blocked
@@ -155,7 +183,7 @@ export default function ChatView({
                     : "border border-zinc-200 bg-white text-zinc-800",
               ].join(" ")}
             >
-              {m.content}
+              {m.role === "assistant" ? stripMarkdown(m.content) : m.content}
               {m.streaming && <span className="caret" />}
             </div>
           </div>
