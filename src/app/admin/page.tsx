@@ -8,7 +8,7 @@ const PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
 const ARM_OPTIONS = [
   { code: "none", name: "全部关闭（未开放）" },
-  { code: "socratic", name: "臂1 · 苏格拉底式引导" },
+  { code: "socratic", name: "臂1 · 元认知引导" },
   { code: "free", name: "臂2 · 自由问答" },
   { code: "solo", name: "臂3 · 自主思考（无 AI）" },
 ];
@@ -382,7 +382,7 @@ function AdminInner() {
                 disabled
                 className="mt-1 block w-full cursor-not-allowed rounded-lg border border-zinc-200 bg-zinc-50 px-2 py-1.5 text-sm text-zinc-500"
               >
-                <option value="socratic">臂1 · 苏格拉底式引导</option>
+                <option value="socratic">臂1 · 元认知引导</option>
                 <option value="free">臂2 · 自由问答</option>
                 <option value="solo">臂3 · 自主思考</option>
               </select>
@@ -505,7 +505,7 @@ function AdminInner() {
                 className="rounded-lg border border-zinc-300 px-2 py-1.5 text-sm text-zinc-700"
               >
                 <option value="all">全部臂（全局）</option>
-                <option value="socratic">臂1 · 苏格拉底式引导</option>
+                <option value="socratic">臂1 · 元认知引导</option>
                 <option value="free">臂2 · 自由问答</option>
                 <option value="solo">臂3 · 自主思考</option>
               </select>
@@ -640,7 +640,7 @@ function AdminInner() {
                 className="rounded-lg border border-zinc-200 px-2 py-1.5 text-sm"
               >
                 <option value="all">全部</option>
-                <option value="socratic">臂1 苏格拉底</option>
+                <option value="socratic">臂1 元认知</option>
                 <option value="free">臂2 自由问答</option>
                 <option value="solo">臂3 无AI</option>
               </select>

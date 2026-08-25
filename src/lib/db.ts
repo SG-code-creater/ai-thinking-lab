@@ -313,7 +313,7 @@ export async function exportPeerReviews(arm?: string): Promise<any[]> {
 // ============ 进度看板（按臂聚合） ============
 
 export const ARM_LABELS: Record<string, string> = {
-  socratic: "臂1 苏格拉底",
+  socratic: "臂1 元认知引导",
   free: "臂2 自由问答",
   solo: "臂3 无AI",
 };
