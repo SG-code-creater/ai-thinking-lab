@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type Msg = {
   role: "user" | "assistant";
@@ -71,6 +71,69 @@ export default function ChatView({
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+  // P2 防依赖：使用时长 / 轮次温和提醒（仅对 AI 对话臂生效）-------------------
+  const REMINDER_TURN_THRESHOLD = 10; // 用户发言达到该轮数时触发一次
+  const REMINDER_MINUTE_THRESHOLD = 15; // 累计使用达到该分钟数时触发一次
+  const reminderKey = `exp_reminder_${sessionId}`;
+  const durationKey = `exp_duration_${sessionId}`;
+  const REMINDER_TEXT =
+    "你已使用本助手有一会儿了，要不要先停下来，自己把刚才聊到的思路梳理一遍？";
+
+  const [showReminder, setShowReminder] = useState(false);
+  const durationRef = useRef(0); // 累计"可见"毫秒
+  const lastTickRef = useRef(Date.now());
+  const messagesRef = useRef<Msg[]>([]);
+
+  // 让 checkReminder 读取最新消息而不随每次渲染变化
+  useEffect(() => {
+    messagesRef.current = messages;
+  }, [messages]);
+
+  const checkReminder = useCallback(() => {
+    if (typeof window === "undefined") return;
+    if (localStorage.getItem(reminderKey)) return; // 已提醒过，全程只触发一次
+    const userTurns = messagesRef.current.filter(
+      (m) => m.role === "user",
+    ).length;
+    const reached =
+      userTurns >= REMINDER_TURN_THRESHOLD ||
+      durationRef.current >= REMINDER_MINUTE_THRESHOLD * 60_000;
+    if (reached) {
+      localStorage.setItem(reminderKey, "1");
+      setShowReminder(true);
+    }
+  }, [reminderKey]);
+
+  // 读取历史累计时长（跨刷新保留），并初始化计时起点
+  useEffect(() => {
+    durationRef.current = Number(localStorage.getItem(durationKey) || 0);
+    lastTickRef.current = Date.now();
+    checkReminder();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sessionId, participantId]);
+
+  // 每 10s 累加"页面可见"时长；达标时触发提醒（只触发一次）
+  useEffect(() => {
+    const id = setInterval(() => {
+      const now = Date.now();
+      if (
+        typeof document !== "undefined" &&
+        document.visibilityState === "visible"
+      ) {
+        durationRef.current += now - lastTickRef.current;
+        localStorage.setItem(durationKey, String(durationRef.current));
+      }
+      lastTickRef.current = now;
+      checkReminder();
+    }, 10_000);
+    return () => clearInterval(id);
+  }, [checkReminder]);
+
+  // 每轮对话（含历史加载）后检查是否达标
+  useEffect(() => {
+    checkReminder();
+  }, [messages, checkReminder]);
 
   async function send() {
     const text = input.trim();
@@ -188,6 +251,24 @@ export default function ChatView({
             </div>
           </div>
         ))}
+        {showReminder && (
+          <div className="mx-auto max-w-2xl">
+            <div className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm text-zinc-600">
+              <div className="mb-1 text-xs font-medium text-zinc-400">
+                系统提示
+              </div>
+              <div className="whitespace-pre-wrap leading-relaxed">
+                {REMINDER_TEXT}
+              </div>
+              <button
+                onClick={() => setShowReminder(false)}
+                className="mt-2 text-xs text-zinc-400 hover:text-zinc-600"
+              >
+                收起
+              </button>
+            </div>
+          </div>
+        )}
         <div ref={bottomRef} />
       </div>
 
