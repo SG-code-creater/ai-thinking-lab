@@ -116,6 +116,15 @@ create index if not exists idx_surveys_session on public.surveys(session_id, pha
 alter table if exists public.sessions
   add column if not exists turns int default 0;
 
+-- 10.2) sessions 增加反思深度自动打分字段（D2，幂等）
+--      reflection_score：0–3 反思层级（DeepSeek 批处理写入）
+--      reflection_reason：打分依据（抽样人工校验用）
+--      reflection_scored_at：打分时间
+alter table if exists public.sessions
+  add column if not exists reflection_score int,
+  add column if not exists reflection_reason text,
+  add column if not exists reflection_scored_at timestamptz;
+
 -- 11) survey_config：问卷题目配置（单行，研究者后台导入，不写死在代码）
 create table if not exists public.survey_config (
   id          int primary key default 1,        -- 单行配置

@@ -52,6 +52,9 @@ function AdminInner() {
   const [surveyText, setSurveyText] = useState("");
   const [surveyBusy, setSurveyBusy] = useState(false);
 
+  // D2 反思深度批处理打分
+  const [scoreBusy, setScoreBusy] = useState(false);
+
   async function loadMeta() {
     const r = await fetch("/api/admin/arm");
     const d = await r.json();
@@ -155,6 +158,30 @@ function AdminInner() {
   async function signOut() {
     await fetch("/api/sign-out", { method: "POST" });
     window.location.href = "/";
+  }
+
+  async function scoreReflection() {
+    const yes = window.confirm(
+      "将对本批尚未打分的会话调用 DeepSeek 做反思深度评级（0–3）。\n按默认每批 20 条，可多次点击继续。确认开始？",
+    );
+    if (!yes) return;
+    setScoreBusy(true);
+    setMsg(null);
+    try {
+      const r = await fetch("/api/admin/score-reflection", {
+        method: "POST",
+      });
+      const d = await r.json();
+      if (d.ok)
+        setMsg(
+          `反思打分完成：本批处理 ${d.processed} 条，成功 ${d.scored}，失败 ${d.errors}。未打完的会话可再次点击继续。`,
+        );
+      else setMsg("打分失败：" + (d.error || ""));
+    } catch (e: any) {
+      setMsg("打分失败：" + (e?.message || "网络错误"));
+    } finally {
+      setScoreBusy(false);
+    }
   }
 
   // 解析题目文本：按行拆分，去空行、去首尾空格
@@ -570,9 +597,19 @@ function AdminInner() {
             >
               导出统一宽表（wide.csv）
             </a>
+            <button
+              onClick={scoreReflection}
+              disabled={scoreBusy}
+              className="rounded-lg bg-emerald-600 px-3 py-2 text-sm font-medium text-white hover:bg-emerald-700 disabled:opacity-40"
+            >
+              {scoreBusy ? "打分中…" : "批量反思打分（D2）"}
+            </button>
           </div>
           <p className="mt-2 text-xs text-zinc-400">
-            宽表为每会话一行，含前/后测、时长、轮次、完成度与消息/上传计数，可直接喂统计软件做 ANOVA / 前后测差值分析。
+            宽表为每会话一行，含前/后测（按配置题数动态展开）、时长、轮次、完成度、上传数、反思分（reflection_score）与对话全文（messages_text），可直接喂统计软件做 ANOVA / 前后测差值分析。
+          </p>
+          <p className="mt-1 text-xs text-zinc-400">
+            反思分需先点「批量反思打分」由 DeepSeek 评级（0–3）。组间文本特征对比（提问密度/第一人称/行动词/情绪词）可用仓库 <code>scripts/text_features.py</code> 对 messages.csv 跑，无需新功能。
           </p>
         </section>
       </main>

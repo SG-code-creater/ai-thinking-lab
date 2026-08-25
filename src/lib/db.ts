@@ -430,8 +430,9 @@ export async function saveSurveyConfig(questions: string[]): Promise<void> {
   if (error) throw new DbError(error.message);
 }
 
-/** 统一宽表导出（每会话一行，含前/后测、时长、轮次、完成度、消息/上传计数） */
-export async function exportWide(): Promise<any[]> {
+/** 统一宽表导出（每会话一行，含前/后测、时长、轮次、完成度、上传数、反思分、对话全文）。
+ *  返回 { rows, cols }：列头随配置题数动态展开，供导出路由直接生成 CSV。 */
+export async function exportWide(): Promise<{ rows: any[]; cols: string[] }> {
   const db = requireDb();
   const { data: sessions, error: se } = await db
     .from("sessions")
@@ -448,27 +449,73 @@ export async function exportWide(): Promise<any[]> {
   if (pe) throw new DbError(pe.message);
   const { data: msgs, error: me } = await db
     .from("messages")
-    .select("session_id, role");
+    .select("session_id, role, content")
+    .order("created_at", { ascending: true });
   if (me) throw new DbError(me.message);
+  const { data: ups, error: upe } = await db
+    .from("uploads")
+    .select("session_id");
+  if (upe) throw new DbError(upe.message);
+
+  // 反思分：旧库未跑迁移时整列缺失，单独 guarded 读取，避免整次导出失败
+  const reflMap = new Map<string, number | null>();
+  try {
+    const { data: rf, error: rfe } = await db
+      .from("sessions")
+      .select("id, reflection_score");
+    if (!rfe)
+      for (const r of (rf as any[]) ?? [])
+        reflMap.set(r.id, r.reflection_score ?? null);
+  } catch {
+    /* 未执行 10.2 迁移则跳过反思分列 */
+  }
+
+  // 当前配置题数（用于动态展开 pre_qN / post_qN 列）
+  let cfgQ = 0;
+  try {
+    const { data: cfg } = await db
+      .from("survey_config")
+      .select("questions")
+      .eq("id", 1)
+      .maybeSingle();
+    if (cfg && Array.isArray((cfg as any).questions))
+      cfgQ = (cfg as any).questions.length;
+  } catch {
+    /* 忽略 */
+  }
 
   const surveyMap = new Map<string, any>();
+  let maxQ = cfgQ;
   for (const s of (surveys as any[]) ?? []) {
     const m = surveyMap.get(s.session_id) || {};
-    m[s.phase] = Array.isArray(s.answers) ? (s.answers as number[]) : [];
+    const arr = Array.isArray(s.answers) ? (s.answers as number[]) : [];
+    m[s.phase] = arr;
+    maxQ = Math.max(maxQ, arr.length);
     surveyMap.set(s.session_id, m);
   }
+
   const partMap = new Map<string, string>();
   for (const p of (parts as any[]) ?? []) partMap.set(p.id, p.code);
 
   const msgStat = new Map<string, { total: number; user: number }>();
+  const msgTextMap = new Map<string, string[]>();
   for (const m of (msgs as any[]) ?? []) {
     const s = msgStat.get(m.session_id) || { total: 0, user: 0 };
     s.total += 1;
     if (m.role === "user") s.user += 1;
     msgStat.set(m.session_id, s);
+    const speaker =
+      m.role === "user" ? "用户" : m.role === "assistant" ? "助手" : "系统";
+    const arr = msgTextMap.get(m.session_id) || [];
+    arr.push(`${speaker}：${m.content}`);
+    msgTextMap.set(m.session_id, arr);
   }
 
-  return ((sessions as any[]) ?? []).map((row) => {
+  const upStat = new Map<string, number>();
+  for (const u of (ups as any[]) ?? [])
+    upStat.set(u.session_id, (upStat.get(u.session_id) || 0) + 1);
+
+  const rows = ((sessions as any[]) ?? []).map((row) => {
     const sv = surveyMap.get(row.id) || {};
     const ms = msgStat.get(row.id) || { total: 0, user: 0 };
     const durMin =
@@ -484,7 +531,7 @@ export async function exportWide(): Promise<any[]> {
         : null;
     const pre: number[] = sv.pre || [];
     const post: number[] = sv.post || [];
-    return {
+    const obj: Record<string, any> = {
       participant_id: row.participant_id,
       group_code: partMap.get(row.participant_id) ?? "",
       arm: row.arm,
@@ -496,14 +543,88 @@ export async function exportWide(): Promise<any[]> {
       turns: row.turns ?? ms.user,
       message_count: ms.total,
       user_turns: ms.user,
+      upload_count: upStat.get(row.id) ?? 0,
+      reflection_score: reflMap.get(row.id) ?? "",
       pre_answers: pre.join("|"),
       post_answers: post.join("|"),
-      pre_q1: pre[0] ?? "",
-      pre_q2: pre[1] ?? "",
-      pre_q3: pre[2] ?? "",
-      post_q1: post[0] ?? "",
-      post_q2: post[1] ?? "",
-      post_q3: post[2] ?? "",
+      messages_text: (msgTextMap.get(row.id) || []).join("\n"),
     };
+    for (let i = 0; i < maxQ; i++) {
+      obj[`pre_q${i + 1}`] = pre[i] ?? "";
+      obj[`post_q${i + 1}`] = post[i] ?? "";
+    }
+    return obj;
   });
+
+  const cols = [
+    "participant_id",
+    "group_code",
+    "arm",
+    "status",
+    "completed",
+    "started_at",
+    "ended_at",
+    "duration_min",
+    "turns",
+    "message_count",
+    "user_turns",
+    "upload_count",
+    "reflection_score",
+    "pre_answers",
+    "post_answers",
+    ...Array.from({ length: maxQ }, (_, i) => `pre_q${i + 1}`),
+    ...Array.from({ length: maxQ }, (_, i) => `post_q${i + 1}`),
+    "messages_text",
+  ];
+  return { rows, cols };
+}
+
+// ============ D2 反思深度自动打分 ============
+
+/** 取尚未打反思分的会话（含其对话全文），供批处理。
+ *  无消息文本的会话（如纯上传的 solo）会被跳过。 */
+export async function getUnscoredSessions(
+  limit = 50,
+): Promise<{ sessionId: string; arm: string; transcript: string }[]> {
+  const db = requireDb();
+  const { data, error } = await db
+    .from("sessions")
+    .select("id, arm, reflection_score")
+    .is("reflection_score", null)
+    .limit(limit);
+  if (error) throw new DbError(error.message);
+  const out: { sessionId: string; arm: string; transcript: string }[] = [];
+  for (const s of (data as any[]) ?? []) {
+    const msgs = await getMessages(s.id);
+    if (!msgs.length) continue; // 无对话文本可打分
+    const transcript = msgs
+      .map((m: any) =>
+        m.role === "user"
+          ? `用户：${m.content}`
+          : m.role === "assistant"
+            ? `助手：${m.content}`
+            : `系统：${m.content}`,
+      )
+      .join("\n");
+    out.push({ sessionId: s.id, arm: s.arm, transcript });
+  }
+  return out;
+}
+
+/** 写入某会话的反思打分结果 */
+export async function saveReflectionScore(
+  sessionId: string,
+  score: number,
+  reason: string,
+): Promise<void> {
+  const db = requireDb();
+  const { error } = await db
+    .from("sessions")
+    .update({
+      reflection_score: score,
+      reflection_reason: reason,
+      reflection_scored_at: new Date().toISOString(),
+    })
+    .eq("id", sessionId);
+  if (error) throw new DbError(error.message);
 }

@@ -28,28 +28,8 @@ export async function GET(req: NextRequest) {
 
   try {
     if (type === "wide") {
-      const rows = await exportWide();
-      const csv = toCsv(rows, [
-        "participant_id",
-        "group_code",
-        "arm",
-        "status",
-        "completed",
-        "started_at",
-        "ended_at",
-        "duration_min",
-        "turns",
-        "message_count",
-        "user_turns",
-        "pre_answers",
-        "post_answers",
-        "pre_q1",
-        "pre_q2",
-        "pre_q3",
-        "post_q1",
-        "post_q2",
-        "post_q3",
-      ]);
+      const { rows, cols } = await exportWide();
+      const csv = toCsv(rows, cols);
       return new Response(csv, {
         headers: {
           "Content-Type": "text/csv; charset=utf-8",
