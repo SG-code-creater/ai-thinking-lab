@@ -47,6 +47,11 @@ function AdminInner() {
   const [ruleText, setRuleText] = useState("");
   const [ruleBusy, setRuleBusy] = useState(false);
 
+  // 问卷题目配置（不写死，研究者导入）
+  const [surveyQuestions, setSurveyQuestions] = useState<string[]>([]);
+  const [surveyText, setSurveyText] = useState("");
+  const [surveyBusy, setSurveyBusy] = useState(false);
+
   async function loadMeta() {
     const r = await fetch("/api/admin/arm");
     const d = await r.json();
@@ -62,12 +67,21 @@ function AdminInner() {
     const d = await r.json();
     if (d.ok) setRules(d.rules);
   }
+  async function loadSurveyQuestions() {
+    const r = await fetch("/api/admin/survey-questions");
+    const d = await r.json();
+    if (d.ok) {
+      setSurveyQuestions(d.questions || []);
+      setSurveyText((d.questions || []).join("\n"));
+    }
+  }
 
   useEffect(() => {
     if (isSignedIn) {
       loadMeta();
       loadCodes();
       loadRules();
+      loadSurveyQuestions();
     }
   }, [isSignedIn]);
 
@@ -141,6 +155,52 @@ function AdminInner() {
   async function signOut() {
     await fetch("/api/sign-out", { method: "POST" });
     window.location.href = "/";
+  }
+
+  // 解析题目文本：按行拆分，去空行、去首尾空格
+  function parseQuestions(text: string): string[] {
+    return text
+      .split(/\r?\n/)
+      .map((l) => l.trim())
+      .filter((l) => l.length > 0);
+  }
+
+  // 从文件导入题目（支持 .txt/.md/.csv 等纯文本；Word 请先复制文本）
+  function onSurveyFile(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const text = String(reader.result || "");
+      setSurveyText(text);
+    };
+    reader.readAsText(file);
+  }
+
+  async function saveSurveyQuestions() {
+    const qs = parseQuestions(surveyText);
+    if (qs.length === 0) {
+      setMsg("题目不能为空（每行一题）");
+      return;
+    }
+    setSurveyBusy(true);
+    setMsg(null);
+    try {
+      const r = await fetch("/api/admin/survey-questions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ questions: qs }),
+      });
+      const d = await r.json();
+      if (d.ok) {
+        setSurveyQuestions(qs);
+        setMsg(`已保存 ${qs.length} 道题目，参与者进入实验时将作答`);
+      } else setMsg("保存失败：" + (d.error || ""));
+    } catch (e: any) {
+      setMsg("保存失败：" + (e?.message || "网络错误"));
+    } finally {
+      setSurveyBusy(false);
+    }
   }
 
   async function addRule() {
@@ -445,6 +505,43 @@ function AdminInner() {
                 </div>
               );
             })}
+          </div>
+        </section>
+
+        {/* 问卷题目配置（前测/后测共用，不写死） */}
+        <section className="rounded-2xl border border-zinc-200 bg-white p-5">
+          <h2 className="text-sm font-semibold text-zinc-900">问卷题目配置</h2>
+          <p className="mt-1 text-xs text-zinc-500">
+            前测 / 后测使用同一套题目（当前已配置 {surveyQuestions.length} 题）。题目不写死在代码里，
+            在这里粘贴或导入即可；未配置时参与者端会自动跳过问卷。每行一题。
+          </p>
+          <textarea
+            value={surveyText}
+            onChange={(e) => setSurveyText(e.target.value)}
+            rows={6}
+            placeholder={"每行一题，例如：\n遇到人际矛盾时，我会先想清楚自己真正想要什么结果。\n我会主动换位思考对方的处境和动机。\n我能想出不止一种可行的解决办法，并估计可能的后果。"}
+            className="mt-3 w-full rounded-lg border border-zinc-200 p-3 text-sm text-zinc-800 focus:border-indigo-400 focus:outline-none"
+          />
+          <div className="mt-3 flex flex-wrap items-center gap-2">
+            <button
+              onClick={saveSurveyQuestions}
+              disabled={surveyBusy}
+              className="rounded-lg bg-indigo-600 px-3 py-2 text-sm font-medium text-white hover:bg-indigo-700 disabled:opacity-40"
+            >
+              {surveyBusy ? "保存中…" : "保存题目"}
+            </button>
+            <label className="cursor-pointer rounded-lg border border-zinc-200 px-3 py-2 text-sm text-zinc-600 hover:bg-zinc-50">
+              导入文档
+              <input
+                type="file"
+                accept=".txt,.md,.csv,text/plain"
+                onChange={onSurveyFile}
+                className="hidden"
+              />
+            </label>
+            <span className="text-xs text-zinc-400">
+              支持 .txt/.md/.csv 纯文本（Word 请先复制文本粘贴）
+            </span>
           </div>
         </section>
 

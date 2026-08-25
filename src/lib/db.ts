@@ -323,20 +323,16 @@ export async function deleteRule(id: string): Promise<void> {
 }
 
 // ============ 前测 / 后测问卷（surveys） ============
+// 题目数量不写死：答案以 jsonb 数组存储，前/后测共用同一套题目（来自 survey_config）。
 
-export interface SurveyAnswers {
-  q1: number;
-  q2: number;
-  q3: number;
-}
-
-/** 保存一份问卷（pre / post 各一份，upsert 按 session_id + phase） */
+/** 保存一份问卷（pre / post 各一份，upsert 按 session_id + phase）。
+ *  answers 为与题目顺序一致的 1–5 整数数组。 */
 export async function saveSurvey(
   sessionId: string,
   participantId: string,
   arm: string,
   phase: "pre" | "post",
-  ans: SurveyAnswers,
+  answers: number[],
 ): Promise<void> {
   const db = requireDb();
   const { error } = await db.from("surveys").upsert(
@@ -345,9 +341,7 @@ export async function saveSurvey(
       participant_id: participantId,
       arm,
       phase,
-      q1: ans.q1,
-      q2: ans.q2,
-      q3: ans.q3,
+      answers,
     },
     { onConflict: "session_id,phase" },
   );
@@ -405,6 +399,37 @@ export async function endSession(sessionId: string): Promise<void> {
   if (error) throw new DbError(error.message);
 }
 
+// ============ 问卷题目配置（survey_config，单行） ============
+// 题目不在代码里写死，由研究者通过后台导入；参与者端动态拉取。
+
+/** 读取当前问卷题目（默认空数组） */
+export async function getSurveyConfig(): Promise<string[]> {
+  const db = requireDb();
+  const { data, error } = await db
+    .from("survey_config")
+    .select("questions")
+    .eq("id", 1)
+    .maybeSingle();
+  if (error) throw new DbError(error.message);
+  if (!data) return [];
+  const qs = (data as any).questions;
+  return Array.isArray(qs) ? (qs as string[]) : [];
+}
+
+/** 保存问卷题目（覆盖式，单行 id=1） */
+export async function saveSurveyConfig(questions: string[]): Promise<void> {
+  const db = requireDb();
+  const { error } = await db.from("survey_config").upsert(
+    {
+      id: 1,
+      questions,
+      updated_at: new Date().toISOString(),
+    },
+    { onConflict: "id" },
+  );
+  if (error) throw new DbError(error.message);
+}
+
 /** 统一宽表导出（每会话一行，含前/后测、时长、轮次、完成度、消息/上传计数） */
 export async function exportWide(): Promise<any[]> {
   const db = requireDb();
@@ -415,7 +440,7 @@ export async function exportWide(): Promise<any[]> {
   if (se) throw new DbError(se.message);
   const { data: surveys, error: sve } = await db
     .from("surveys")
-    .select("session_id, phase, q1, q2, q3");
+    .select("session_id, phase, answers");
   if (sve) throw new DbError(sve.message);
   const { data: parts, error: pe } = await db
     .from("participants")
@@ -429,7 +454,7 @@ export async function exportWide(): Promise<any[]> {
   const surveyMap = new Map<string, any>();
   for (const s of (surveys as any[]) ?? []) {
     const m = surveyMap.get(s.session_id) || {};
-    m[s.phase] = { q1: s.q1, q2: s.q2, q3: s.q3 };
+    m[s.phase] = Array.isArray(s.answers) ? (s.answers as number[]) : [];
     surveyMap.set(s.session_id, m);
   }
   const partMap = new Map<string, string>();
@@ -457,8 +482,8 @@ export async function exportWide(): Promise<any[]> {
             ),
           )
         : null;
-    const pre = sv.pre || {};
-    const post = sv.post || {};
+    const pre: number[] = sv.pre || [];
+    const post: number[] = sv.post || [];
     return {
       participant_id: row.participant_id,
       group_code: partMap.get(row.participant_id) ?? "",
@@ -471,12 +496,14 @@ export async function exportWide(): Promise<any[]> {
       turns: row.turns ?? ms.user,
       message_count: ms.total,
       user_turns: ms.user,
-      pre_q1: pre.q1 ?? "",
-      pre_q2: pre.q2 ?? "",
-      pre_q3: pre.q3 ?? "",
-      post_q1: post.q1 ?? "",
-      post_q2: post.q2 ?? "",
-      post_q3: post.q3 ?? "",
+      pre_answers: pre.join("|"),
+      post_answers: post.join("|"),
+      pre_q1: pre[0] ?? "",
+      pre_q2: pre[1] ?? "",
+      pre_q3: pre[2] ?? "",
+      post_q1: post[0] ?? "",
+      post_q2: post[1] ?? "",
+      post_q3: post[2] ?? "",
     };
   });
 }

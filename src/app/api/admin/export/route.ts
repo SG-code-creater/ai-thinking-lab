@@ -41,6 +41,8 @@ export async function GET(req: NextRequest) {
         "turns",
         "message_count",
         "user_turns",
+        "pre_answers",
+        "post_answers",
         "pre_q1",
         "pre_q2",
         "pre_q3",

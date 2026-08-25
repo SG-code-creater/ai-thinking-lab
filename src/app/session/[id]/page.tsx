@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import ChatView from "@/components/ChatView";
 import DocCollector from "@/components/DocCollector";
@@ -20,13 +20,6 @@ type SurveyStatus = {
   endedAt: string | null;
 };
 
-// 前测 / 后测共用题目（反思思维自评，1–5 分）
-const QUESTIONS = [
-  "遇到人际矛盾时，我会先想清楚自己真正想要什么结果。",
-  "我会主动换位思考对方的处境和动机。",
-  "我能想出不止一种可行的解决办法，并估计可能的后果。",
-];
-
 export default function SessionPage() {
   const params = useParams();
   const sessionId = String(params.id);
@@ -39,6 +32,7 @@ export default function SessionPage() {
   const [showRules, setShowRules] = useState(true);
   // 问卷 / 结束状态
   const [survey, setSurvey] = useState<SurveyStatus | null>(null);
+  const [questions, setQuestions] = useState<string[]>([]); // 题目（后台配置，动态）
   const [stage, setStage] = useState<"pre" | "main" | "post" | "done">("pre");
   const [busy, setBusy] = useState(false);
 
@@ -60,32 +54,59 @@ export default function SessionPage() {
       return;
     }
     setParticipantId(p.participantId);
-    fetch(
+
+    // 并行：会话信息 + 问卷题目
+    const loadInfo = fetch(
       `/api/session-info?sessionId=${encodeURIComponent(sessionId)}&participantId=${encodeURIComponent(p.participantId)}`,
     )
       .then((r) => r.json())
       .then((d) => {
-        if (!d.ok) setStatus("bad");
-        else {
-          setInfo(d);
-          setSurvey(d.survey);
-          // 计算初始阶段：已结束 → done；未做前测 → pre；否则 main
-          const sv: SurveyStatus = d.survey;
-          if (sv?.ended) setStage("done");
-          else if (!sv?.pre) setStage("pre");
-          else setStage("main");
-          setStatus("ready");
-          // 并行加载对参与者可见的测试背景规则
-          fetch("/api/rules")
-            .then((r) => r.json())
-            .then((rd) => {
-              if (rd.ok) setBackgroundRules(rd.rules);
-            })
-            .catch(() => {});
+        if (!d.ok) {
+          setStatus("bad");
+          return;
         }
+        setInfo(d);
+        setSurvey(d.survey);
+        const sv: SurveyStatus = d.survey;
+        // 阶段判定延后到题目加载后统一处理
+        return sv;
       })
       .catch(() => setStatus("bad"));
+
+    const loadQuestions = fetch("/api/survey-questions")
+      .then((r) => r.json())
+      .then((rd) => {
+        if (rd.ok) {
+          const qs = rd.questions || [];
+          questionsRef.current = qs;
+          setQuestions(qs);
+        }
+      })
+      .catch(() => {});
+
+    Promise.all([loadInfo, loadQuestions]).then(([sv]) => {
+      const surveyStatus = (sv as SurveyStatus) || null;
+      const qs = questionsRef.current || [];
+      if (!surveyStatus) return;
+      if (surveyStatus.ended) setStage("done");
+      else if (qs.length === 0) setStage("main"); // 题目未配置 → 跳过问卷
+      else if (!surveyStatus.pre) setStage("pre");
+      else setStage("main");
+      setStatus("ready");
+
+      // 并行加载对参与者可见的测试背景规则
+      fetch("/api/rules")
+        .then((r) => r.json())
+        .then((rd) => {
+          if (rd.ok) setBackgroundRules(rd.rules);
+        })
+        .catch(() => {});
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sessionId, router]);
+
+  // 题目加载后用于阶段判定（避免闭包拿到旧值）
+  const questionsRef = useRef<string[]>([]);
 
   function exit() {
     localStorage.removeItem("exp_participant");
@@ -102,9 +123,7 @@ export default function SessionPage() {
           sessionId,
           participantId,
           phase,
-          q1: ans[0],
-          q2: ans[1],
-          q3: ans[2],
+          answers: ans,
         }),
       });
       const d = await r.json();
@@ -119,15 +138,33 @@ export default function SessionPage() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ sessionId, participantId }),
         });
-        setSurvey((s) => ({
-          ...(s as SurveyStatus),
-          post: true,
-          ended: true,
-        }));
+        setSurvey((s) => ({ ...(s as SurveyStatus), post: true, ended: true }));
         setStage("done");
       }
     } catch (e: any) {
       alert("提交失败：" + (e?.message || "请重试"));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  // 点击「完成实验」：有题目 → 填后测；无题目 → 直接结束
+  async function finishExperiment() {
+    if (questions.length > 0) {
+      setStage("post");
+      return;
+    }
+    setBusy(true);
+    try {
+      await fetch("/api/session/end", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionId, participantId }),
+      });
+      setSurvey((s) => ({ ...(s as SurveyStatus), ended: true }));
+      setStage("done");
+    } catch (e: any) {
+      alert("结束失败：" + (e?.message || "请重试"));
     } finally {
       setBusy(false);
     }
@@ -143,6 +180,7 @@ export default function SessionPage() {
     return (
       <SurveyScreen
         phase={stage}
+        questions={questions}
         busy={busy}
         onSubmit={submitSurvey}
       />
@@ -179,8 +217,9 @@ export default function SessionPage() {
         </div>
         <div className="flex items-center gap-2">
           <button
-            onClick={() => setStage("post")}
-            className="rounded-lg bg-indigo-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-indigo-700"
+            onClick={finishExperiment}
+            disabled={busy}
+            className="rounded-lg bg-indigo-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-indigo-700 disabled:opacity-40"
           >
             完成实验
           </button>
@@ -232,16 +271,23 @@ export default function SessionPage() {
 
 function SurveyScreen({
   phase,
+  questions,
   busy,
   onSubmit,
 }: {
   phase: "pre" | "post";
+  questions: string[];
   busy: boolean;
   onSubmit: (phase: "pre" | "post", ans: number[]) => void;
 }) {
-  const [ans, setAns] = useState<number[]>([0, 0, 0]);
+  const [ans, setAns] = useState<number[]>(() => questions.map(() => 0));
 
-  const allAnswered = ans.every((n) => n >= 1 && n <= 5);
+  // 题目数量变化时重置答案
+  useEffect(() => {
+    setAns(questions.map(() => 0));
+  }, [questions]);
+
+  const allAnswered = ans.length === questions.length && ans.every((n) => n >= 1 && n <= 5);
 
   return (
     <div className="flex h-screen flex-col items-center justify-center bg-zinc-50 px-6">
@@ -254,7 +300,7 @@ function SurveyScreen({
           {phase === "post" && " 同样的题目，再填一次即可。"}
         </p>
         <div className="mt-5 space-y-5">
-          {QUESTIONS.map((q, i) => (
+          {questions.map((q, i) => (
             <div key={i}>
               <div className="text-sm text-zinc-800">{q}</div>
               <div className="mt-2 flex gap-2">
