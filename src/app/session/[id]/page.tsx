@@ -187,21 +187,15 @@ export default function SessionPage() {
     );
   }
 
-  // 完成页
+  // 完成页（含盲化校验 + 臂3 同伴互评 + 数据删除）
   if (stage === "done") {
     return (
-      <div className="flex h-screen flex-col items-center justify-center bg-zinc-50 px-6 text-center">
-        <div className="text-lg font-semibold text-zinc-900">实验已完成</div>
-        <p className="mt-2 max-w-md text-sm text-zinc-500">
-          感谢你的参与！你的回答已记录，你可以关闭本页面。
-        </p>
-        <button
-          onClick={exit}
-          className="mt-6 rounded-lg border border-zinc-200 px-4 py-2 text-sm text-zinc-600 hover:bg-zinc-100"
-        >
-          返回首页
-        </button>
-      </div>
+      <DoneScreen
+        sessionId={sessionId}
+        participantId={participantId}
+        arm={info?.arm ?? ""}
+        onExit={exit}
+      />
     );
   }
 
@@ -333,6 +327,254 @@ function SurveyScreen({
           {busy ? "提交中…" : phase === "pre" ? "开始实验" : "提交并结束"}
         </button>
       </div>
+    </div>
+  );
+}
+
+// 完成页：盲化校验题（A3）→ 感谢 + 臂3 同伴互评 → 数据删除入口（A4）
+function DoneScreen({
+  sessionId,
+  participantId,
+  arm,
+  onExit,
+}: {
+  sessionId: string;
+  participantId: string;
+  arm: string;
+  onExit: () => void;
+}) {
+  const [guessDone, setGuessDone] = useState(false);
+  const [guess, setGuess] = useState<string | null>(null);
+  const [guessBusy, setGuessBusy] = useState(false);
+
+  async function submitGuess(g: string) {
+    setGuessBusy(true);
+    try {
+      const r = await fetch("/api/guess-group", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionId, participantId, guess: g }),
+      });
+      const d = await r.json();
+      if (!d.ok) throw new Error(d.error || "提交失败");
+      setGuess(g);
+      setGuessDone(true);
+    } catch (e: any) {
+      alert("提交失败：" + (e?.message || "请重试"));
+    } finally {
+      setGuessBusy(false);
+    }
+  }
+
+  if (!guessDone) {
+    const options = [
+      { k: "A", t: "一个会不断反问、引导我自己思考的 AI" },
+      { k: "B", t: "一个直接回答我、给我信息的 AI" },
+      { k: "C", t: "没有 AI，完全靠我自己书写" },
+      { k: "D", t: "不确定 / 说不清" },
+    ];
+    return (
+      <div className="flex h-screen items-center justify-center bg-zinc-50 px-6">
+        <div className="w-full max-w-lg rounded-2xl border border-zinc-200 bg-white p-6">
+          <div className="text-base font-semibold text-zinc-900">
+            最后一步小问题
+          </div>
+          <p className="mt-1 text-xs text-zinc-500">
+            凭你的真实感觉选一项即可（没有标准答案）。
+          </p>
+          <div className="mt-4 space-y-2">
+            {options.map((o) => (
+              <button
+                key={o.k}
+                disabled={guessBusy}
+                onClick={() => submitGuess(o.k)}
+                className="flex w-full items-center gap-3 rounded-lg border border-zinc-200 px-4 py-3 text-left text-sm text-zinc-700 hover:border-indigo-400 hover:bg-indigo-50 disabled:opacity-50"
+              >
+                <span className="font-semibold text-indigo-600">{o.k}.</span>
+                <span>{o.t}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="scroll-thin h-screen overflow-y-auto bg-zinc-50 px-6 py-10">
+      <div className="mx-auto w-full max-w-lg space-y-6">
+        <div className="rounded-2xl border border-zinc-200 bg-white p-6 text-center">
+          <div className="text-lg font-semibold text-zinc-900">实验已完成</div>
+          <p className="mt-2 text-sm text-zinc-500">
+            感谢你的参与！你的回答已记录。
+          </p>
+          <div className="mt-5 flex justify-center gap-3">
+            <button
+              onClick={onExit}
+              className="rounded-lg border border-zinc-200 px-4 py-2 text-sm text-zinc-600 hover:bg-zinc-50"
+            >
+              返回首页（保留数据）
+            </button>
+            <button
+              onClick={async () => {
+                if (
+                  !confirm(
+                    "确定要删除你提交的全部数据并退出吗？此操作不可恢复。",
+                  )
+                )
+                  return;
+                try {
+                  const r = await fetch("/api/withdraw", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ sessionId, participantId }),
+                  });
+                  const d = await r.json();
+                  if (!d.ok) throw new Error(d.error || "删除失败");
+                  onExit();
+                } catch (e: any) {
+                  alert("删除失败：" + (e?.message || "请重试"));
+                }
+              }}
+              className="rounded-lg border border-red-200 px-4 py-2 text-sm text-red-600 hover:bg-red-50"
+            >
+              删除我的数据并退出
+            </button>
+          </div>
+        </div>
+
+        {arm === "solo" && <PeerReviewBox sessionId={sessionId} />}
+      </div>
+    </div>
+  );
+}
+
+// 臂3 同伴互评：抽取其他 solo 参与者的匿名文本，当前参与者打分 + 评论
+function PeerReviewBox({ sessionId }: { sessionId: string }) {
+  const [samples, setSamples] = useState<
+    { uploadId: string; text: string }[]
+  >([]);
+  const [ratings, setRatings] = useState<Record<string, number | null>>({});
+  const [comments, setComments] = useState<Record<string, string>>({});
+  const [busy, setBusy] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    fetch(`/api/peer-review?sessionId=${encodeURIComponent(sessionId)}`)
+      .then((r) => r.json())
+      .then((d) => {
+        if (d.ok) {
+          setSamples(d.samples || []);
+          if ((d.alreadyReviewed ?? 0) > 0) setSubmitted(true);
+        }
+      })
+      .catch(() => {})
+      .finally(() => setLoaded(true));
+  }, [sessionId]);
+
+  async function submit() {
+    const reviews = samples
+      .filter((s) => ratings[s.uploadId] != null)
+      .map((s) => ({
+        uploadId: s.uploadId,
+        rating: ratings[s.uploadId] as number,
+        comment: comments[s.uploadId] || "",
+      }));
+    if (!reviews.length) return;
+    setBusy(true);
+    try {
+      const r = await fetch("/api/peer-review", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionId, reviews }),
+      });
+      const d = await r.json();
+      if (!d.ok) throw new Error(d.error || "提交失败");
+      setSubmitted(true);
+    } catch (e: any) {
+      alert("提交失败：" + (e?.message || "请重试"));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <div className="rounded-2xl border border-zinc-200 bg-white p-6">
+      <div className="text-base font-semibold text-zinc-900">
+        看看同伴怎么想（匿名）
+      </div>
+      <p className="mt-1 text-xs text-zinc-500">
+        下面是其他同学（匿名）写下的思考片段，凭你的真实感觉为其「可借鉴程度」打分（1–5，5 最高）。这是可选的，不评也不影响任何结果。
+      </p>
+
+      {!loaded && (
+        <p className="mt-4 text-sm text-zinc-400">加载中…</p>
+      )}
+
+      {loaded && samples.length === 0 && !submitted && (
+        <p className="mt-4 text-sm text-zinc-400">
+          暂时没有其他同伴的匿名内容，稍后再来看看也可。
+        </p>
+      )}
+
+      {submitted && (
+        <p className="mt-4 text-sm text-emerald-600">
+          已提交评价，感谢你的反馈！
+        </p>
+      )}
+
+      {!submitted &&
+        samples.map((s) => (
+          <div
+            key={s.uploadId}
+            className="mt-4 rounded-xl border border-zinc-100 bg-zinc-50 p-3"
+          >
+            <div className="whitespace-pre-wrap text-sm leading-relaxed text-zinc-700">
+              {s.text}
+            </div>
+            <div className="mt-3 flex items-center gap-1.5">
+              <span className="text-xs text-zinc-500">可借鉴程度：</span>
+              {[1, 2, 3, 4, 5].map((n) => (
+                <button
+                  key={n}
+                  onClick={() =>
+                    setRatings((m) => ({ ...m, [s.uploadId]: n }))
+                  }
+                  className={`h-8 w-8 rounded-lg border text-sm font-medium ${
+                    ratings[s.uploadId] === n
+                      ? "border-indigo-600 bg-indigo-600 text-white"
+                      : "border-zinc-200 text-zinc-600 hover:bg-zinc-100"
+                  }`}
+                >
+                  {n}
+                </button>
+              ))}
+            </div>
+            <textarea
+              value={comments[s.uploadId] || ""}
+              onChange={(e) =>
+                setComments((m) => ({
+                  ...m,
+                  [s.uploadId]: e.target.value,
+                }))
+              }
+              rows={2}
+              placeholder="一句话评论（可选）"
+              className="mt-2 w-full resize-none rounded-lg border border-zinc-300 p-2 text-sm outline-none focus:border-indigo-500"
+            />
+          </div>
+        ))}
+
+      {!submitted && samples.length > 0 && (
+        <button
+          disabled={busy}
+          onClick={submit}
+          className="mt-4 w-full rounded-lg bg-indigo-600 py-2.5 text-sm font-medium text-white hover:bg-indigo-700 disabled:opacity-40"
+        >
+          {busy ? "提交中…" : "提交评价"}
+        </button>
+      )}
     </div>
   );
 }

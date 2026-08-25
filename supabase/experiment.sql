@@ -134,3 +134,34 @@ create table if not exists public.survey_config (
 insert into public.survey_config (id, questions)
 values (1, '[]'::jsonb)
 on conflict (id) do nothing;
+
+-- 10.3) consents：知情同意记录（A4，幂等）
+--      每会话仅一次同意；参与前落库，作为人类受试者研究的伦理留痕。
+create table if not exists public.consents (
+  id             uuid primary key default gen_random_uuid(),
+  session_id     uuid references public.sessions(id) on delete cascade,
+  participant_id uuid references public.participants(id) on delete cascade,
+  consented_at   timestamptz default now(),
+  unique (session_id)
+);
+
+-- 10.4) sessions 增加盲化校验猜测字段（A3，幂等）
+--      guessed_group：参与者会话末自报「我觉得自己在哪组」，存中性选项字母 A/B/C/D
+--      研究者对照 arm 映射（socratic→A, free→B, solo→C）即可算盲化成功率。
+alter table if exists public.sessions
+  add column if not exists guessed_group text;
+
+-- 10.5) peer_reviews：臂3 同伴互评（匿名，幂等）
+--      reviewer 为当前 solo 参与者；target 为其他 solo 参与者的匿名文本上传。
+--      同一评审者对同一份文本只评一次（unique 约束去重，upsert 幂等）。
+create table if not exists public.peer_reviews (
+  id                  uuid primary key default gen_random_uuid(),
+  reviewer_session_id uuid references public.sessions(id) on delete cascade,
+  target_upload_id    uuid references public.uploads(id) on delete cascade,
+  rating              int not null check (rating between 1 and 5),
+  comment             text,
+  created_at          timestamptz default now(),
+  unique (reviewer_session_id, target_upload_id)
+);
+create index if not exists idx_peer_reviews_target
+  on public.peer_reviews(target_upload_id);

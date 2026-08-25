@@ -436,7 +436,7 @@ export async function exportWide(): Promise<{ rows: any[]; cols: string[] }> {
   const db = requireDb();
   const { data: sessions, error: se } = await db
     .from("sessions")
-    .select("id, participant_id, arm, status, started_at, ended_at, turns")
+    .select("id, participant_id, arm, status, started_at, ended_at, turns, guessed_group")
     .order("started_at", { ascending: true });
   if (se) throw new DbError(se.message);
   const { data: surveys, error: sve } = await db
@@ -545,6 +545,7 @@ export async function exportWide(): Promise<{ rows: any[]; cols: string[] }> {
       user_turns: ms.user,
       upload_count: upStat.get(row.id) ?? 0,
       reflection_score: reflMap.get(row.id) ?? "",
+      guessed_group: row.guessed_group ?? "",
       pre_answers: pre.join("|"),
       post_answers: post.join("|"),
       messages_text: (msgTextMap.get(row.id) || []).join("\n"),
@@ -570,6 +571,7 @@ export async function exportWide(): Promise<{ rows: any[]; cols: string[] }> {
     "user_turns",
     "upload_count",
     "reflection_score",
+    "guessed_group",
     "pre_answers",
     "post_answers",
     ...Array.from({ length: maxQ }, (_, i) => `pre_q${i + 1}`),
@@ -627,4 +629,150 @@ export async function saveReflectionScore(
     })
     .eq("id", sessionId);
   if (error) throw new DbError(error.message);
+}
+
+// ============ A4 知情同意 ============
+
+/** 记录一次知情同意（每会话唯一，重复写入幂等） */
+export async function saveConsent(
+  sessionId: string,
+  participantId: string,
+): Promise<void> {
+  const db = requireDb();
+  const { error } = await db
+    .from("consents")
+    .upsert(
+      { session_id: sessionId, participant_id: participantId },
+      { onConflict: "session_id" },
+    );
+  if (error) throw new DbError(error.message);
+}
+
+/** 该会话是否已记录知情同意 */
+export async function getConsent(sessionId: string): Promise<boolean> {
+  const db = requireDb();
+  const { data, error } = await db
+    .from("consents")
+    .select("id")
+    .eq("session_id", sessionId)
+    .maybeSingle();
+  if (error) throw new DbError(error.message);
+  return !!data;
+}
+
+// ============ A4 退出 / 数据删除 ============
+
+/** 删除某参与者的全部研究数据（按依赖顺序，避免外键冲突）。
+ *  用于参与者随时退出并删除其数据，符合人类受试者可退出/数据最小化原则。 */
+export async function deleteParticipantData(
+  sessionId: string,
+  participantId: string,
+): Promise<void> {
+  const db = requireDb();
+  // 1) 先清同伴互评：本参与者作为评审者的记录
+  await db.from("peer_reviews").delete().eq("reviewer_session_id", sessionId);
+  // 2) 他人评价了本参与者的上传 → 按上传 id 清
+  const { data: myUps } = await db
+    .from("uploads")
+    .select("id")
+    .eq("participant_id", participantId);
+  if (myUps && (myUps as any[]).length) {
+    const ids = (myUps as any[]).map((u) => u.id);
+    await db.from("peer_reviews").delete().in("target_upload_id", ids);
+  }
+  // 3) 其余按依赖顺序
+  await db.from("messages").delete().eq("session_id", sessionId);
+  await db.from("uploads").delete().eq("participant_id", participantId);
+  await db.from("surveys").delete().eq("session_id", sessionId);
+  await db.from("consents").delete().eq("session_id", sessionId);
+  await db.from("sessions").delete().eq("id", sessionId);
+  await db.from("participants").delete().eq("id", participantId);
+}
+
+// ============ A3 盲化校验 ============
+
+/** 写入参与者自报的组别猜测（中性选项字母 A/B/C/D） */
+export async function saveGuessGroup(
+  sessionId: string,
+  participantId: string,
+  guess: string,
+): Promise<void> {
+  const db = requireDb();
+  const { error } = await db
+    .from("sessions")
+    .update({ guessed_group: guess })
+    .eq("id", sessionId)
+    .eq("participant_id", participantId);
+  if (error) throw new DbError(error.message);
+}
+
+// ============ 臂3 同伴互评（匿名） ============
+
+/** 抽取其他 solo 参与者的匿名文本，供当前 solo 参与者评价。
+ *  仅取含文本且长度≥10 字的上传，随机打乱后取前 limitN 条；不返回作者信息。 */
+export async function getPeerSamples(
+  currentSessionId: string,
+  limitN = 3,
+): Promise<{ uploadId: string; text: string }[]> {
+  const db = requireDb();
+  const { data: solos, error: se } = await db
+    .from("sessions")
+    .select("id")
+    .eq("arm", "solo")
+    .neq("id", currentSessionId);
+  if (se) throw new DbError(se.message);
+  const soloIds = ((solos as any[]) ?? []).map((s) => s.id);
+  if (!soloIds.length) return [];
+  const { data, error } = await db
+    .from("uploads")
+    .select("id, text_content")
+    .in("session_id", soloIds)
+    .not("text_content", "is", null)
+    .limit(limitN * 4);
+  if (error) throw new DbError(error.message);
+  const arr = ((data as any[]) ?? [])
+    .map((u) => ({ uploadId: u.id, text: (u.text_content || "").trim() }))
+    .filter((u) => u.text.length >= 10);
+  // 打乱（Fisher–Yates）后取前 limitN
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr.slice(0, limitN);
+}
+
+/** 批量写入同伴互评（对同一份文本重复提交幂等：upsert on conflict） */
+export async function savePeerReviews(
+  reviewerSessionId: string,
+  reviews: { uploadId: string; rating: number; comment?: string }[],
+): Promise<void> {
+  const db = requireDb();
+  for (const r of reviews) {
+    if (!r.uploadId || !(r.rating >= 1 && r.rating <= 5)) continue;
+    const { error } = await db
+      .from("peer_reviews")
+      .upsert(
+        {
+          reviewer_session_id: reviewerSessionId,
+          target_upload_id: r.uploadId,
+          rating: r.rating,
+          comment: r.comment?.trim() || null,
+        },
+        { onConflict: "reviewer_session_id,target_upload_id" },
+      );
+    if (error) throw new DbError(error.message);
+  }
+}
+
+/** 当前 session 已提交的同伴互评条数 */
+export async function countPeerReviews(
+  reviewerSessionId: string,
+): Promise<number> {
+  const db = requireDb();
+  const { count, error } = await db
+    .from("peer_reviews")
+    .select("id", { count: "exact", head: true })
+    .eq("reviewer_session_id", reviewerSessionId);
+  if (error) throw new DbError(error.message);
+  return (count as number) ?? 0;
 }
