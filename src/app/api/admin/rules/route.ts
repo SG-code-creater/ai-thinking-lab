@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
   if (!isAuthorizedAdmin(email))
     return NextResponse.json({ ok: false, error: "未授权" }, { status: 403 });
 
-  const { kind, content } = await req.json();
+  const { kind, content, arm } = await req.json();
   const text = (content || "").trim();
   if (!text)
     return NextResponse.json({ ok: false, error: "规则内容不能为空" }, { status: 400 });
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: false, error: "非法的规则类型" }, { status: 400 });
 
   try {
-    await createRule(kind, text);
+    await createRule(kind, text, arm || null);
     return NextResponse.json({ ok: true });
   } catch (e: any) {
     return NextResponse.json(

@@ -266,20 +266,25 @@ export async function exportUploads(): Promise<any[]> {
 
 export type RuleKind = "background" | "constraint";
 
-/** 列出所有实验规则（按创建时间倒序） */
+/** 列出所有实验规则（按创建时间倒序），含适用臂 arm */
 export async function listRules(): Promise<any[]> {
   const db = requireDb();
   const { data, error } = await db
     .from("rules")
-    .select("id, kind, content, visible_to_participant, created_at")
+    .select("id, kind, content, visible_to_participant, arm, created_at")
     .order("created_at", { ascending: false });
   if (error) throw new DbError(error.message);
   return (data as any[]) ?? [];
 }
 
 /** 新增一条规则：kind = background（测试背景）| constraint（限制条件）。
- *  测试背景默认对参与者可见（visible_to_participant=true），限制条件仅后台可见。 */
-export async function createRule(kind: RuleKind, content: string): Promise<void> {
+ *  测试背景默认对参与者可见（visible_to_participant=true），限制条件仅后台可见。
+ *  arm：null/空 = 全局生效；指定臂 = 仅该臂生效。 */
+export async function createRule(
+  kind: RuleKind,
+  content: string,
+  arm?: string | null,
+): Promise<void> {
   const db = requireDb();
   if (kind !== "background" && kind !== "constraint")
     throw new DbError("非法的规则类型");
@@ -287,30 +292,32 @@ export async function createRule(kind: RuleKind, content: string): Promise<void>
     kind,
     content,
     visible_to_participant: kind === "background",
+    arm: arm && arm !== "all" ? arm : null,
   });
   if (error) throw new DbError(error.message);
 }
 
-/** 读取对参与者可见的测试规则（供会话页开场说明，绝不返回限制条件） */
-export async function getParticipantRules(): Promise<any[]> {
+/** 读取对参与者可见的测试规则（供会话页开场说明，绝不返回限制条件）。
+ *  arm 用于按臂过滤：仅返回「全局规则」或「适用该 arm 的规则」。 */
+export async function getParticipantRules(arm?: string): Promise<any[]> {
   const db = requireDb();
-  const { data, error } = await db
+  let q = db
     .from("rules")
     .select("id, kind, content")
-    .eq("visible_to_participant", true)
-    .order("created_at", { ascending: true });
+    .eq("visible_to_participant", true);
+  if (arm) q = q.or(`arm.is.null,arm.eq.${arm}`);
+  const { data, error } = await q.order("created_at", { ascending: true });
   if (error) throw new DbError(error.message);
   return (data as any[]) ?? [];
 }
 
-/** 读取所有「限制条件」类规则（供注入 AI 系统提示词，约束智能体行为；参与者不可见） */
-export async function getConstraintRules(): Promise<string[]> {
+/** 读取「限制条件」类规则（供注入 AI 系统提示词，约束智能体行为；参与者不可见）。
+ *  arm 用于按臂过滤：仅返回「全局规则」或「适用该 arm 的规则」。 */
+export async function getConstraintRules(arm?: string): Promise<string[]> {
   const db = requireDb();
-  const { data, error } = await db
-    .from("rules")
-    .select("content")
-    .eq("kind", "constraint")
-    .order("created_at", { ascending: true });
+  let q = db.from("rules").select("content").eq("kind", "constraint");
+  if (arm) q = q.or(`arm.is.null,arm.eq.${arm}`);
+  const { data, error } = await q.order("created_at", { ascending: true });
   if (error) throw new DbError(error.message);
   return ((data as any[]) ?? []).map((r) => String(r.content));
 }

@@ -44,6 +44,7 @@ function AdminInner() {
   const [ruleKind, setRuleKind] = useState<"background" | "constraint">(
     "background",
   );
+  const [ruleArm, setRuleArm] = useState<string>("all");
   const [ruleText, setRuleText] = useState("");
   const [ruleBusy, setRuleBusy] = useState(false);
 
@@ -242,7 +243,7 @@ function AdminInner() {
       const r = await fetch("/api/admin/rules", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ kind: ruleKind, content: text }),
+        body: JSON.stringify({ kind: ruleKind, content: text, arm: ruleArm }),
       });
       const d = await r.json();
       if (d.ok) {
@@ -447,7 +448,7 @@ function AdminInner() {
             添加本轮实验的背景说明与限制条件，下方实时显示当前已配置的全部规则。
           </p>
           <p className="mt-2 rounded-lg bg-amber-50 px-3 py-2 text-xs text-amber-700">
-            说明：「测试背景」会作为开场说明卡展示给参与者；「限制条件」会注入 AI 的系统提示词、约束智能体行为，参与者不可见。
+            说明：「测试背景」作为开场说明卡展示给参与者；「限制条件」注入 AI 系统提示词、约束智能体行为，参与者不可见。两者都可选择「适用臂」——默认全局生效；指定臂后，背景仅对该臂参与者显示、约束仅注入该臂 AI（避免误伤其他臂或向 solo 臂泄露分组信息）。
           </p>
 
           {/* 添加表单 */}
@@ -477,6 +478,19 @@ function AdminInner() {
               >
                 限制条件
               </button>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-zinc-500">适用臂</span>
+              <select
+                value={ruleArm}
+                onChange={(e) => setRuleArm(e.target.value)}
+                className="rounded-lg border border-zinc-300 px-2 py-1.5 text-sm text-zinc-700"
+              >
+                <option value="all">全部臂（全局）</option>
+                <option value="socratic">臂1 · 苏格拉底式引导</option>
+                <option value="free">臂2 · 自由问答</option>
+                <option value="solo">臂3 · 自主思考</option>
+              </select>
             </div>
             <textarea
               value={ruleText}
@@ -516,9 +530,17 @@ function AdminInner() {
                           key={r.id}
                           className="flex items-start justify-between gap-3 rounded-lg bg-zinc-50 px-3 py-2"
                         >
-                          <span className="whitespace-pre-wrap text-xs text-zinc-700">
-                            {r.content}
-                          </span>
+                          <div className="min-w-0">
+                            <span className="mb-1 inline-block rounded bg-indigo-100 px-1.5 py-0.5 text-[10px] font-medium text-indigo-700">
+                              {r.arm
+                                ? ARM_OPTIONS.find((a) => a.code === r.arm)
+                                    ?.name ?? r.arm
+                                : "全局"}
+                            </span>
+                            <span className="block whitespace-pre-wrap text-xs text-zinc-700">
+                              {r.content}
+                            </span>
+                          </div>
                           <button
                             onClick={() => deleteRuleItem(r.id)}
                             className="shrink-0 text-xs text-rose-500 hover:text-rose-700"

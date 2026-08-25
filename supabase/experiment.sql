@@ -165,3 +165,10 @@ create table if not exists public.peer_reviews (
 );
 create index if not exists idx_peer_reviews_target
   on public.peer_reviews(target_upload_id);
+
+-- 10.6) rules 增加适用臂字段（按臂规则，幂等）
+--      arm：null/空 = 全局生效；'socratic'/'free'/'solo' = 仅该臂生效。
+--      背景(background) 规则按 arm 过滤后仅展示给该臂参与者；
+--      约束(constraint) 规则按 arm 过滤后仅注入该臂 AI，避免误伤其他臂。
+alter table if exists public.rules
+  add column if not exists arm text;

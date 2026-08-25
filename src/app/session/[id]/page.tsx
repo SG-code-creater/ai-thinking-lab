@@ -67,9 +67,8 @@ export default function SessionPage() {
         }
         setInfo(d);
         setSurvey(d.survey);
-        const sv: SurveyStatus = d.survey;
         // 阶段判定延后到题目加载后统一处理
-        return sv;
+        return d;
       })
       .catch(() => setStatus("bad"));
 
@@ -84,8 +83,9 @@ export default function SessionPage() {
       })
       .catch(() => {});
 
-    Promise.all([loadInfo, loadQuestions]).then(([sv]) => {
-      const surveyStatus = (sv as SurveyStatus) || null;
+    Promise.all([loadInfo, loadQuestions]).then(([d]) => {
+      const info = (d as any) || null;
+      const surveyStatus = (info?.survey as SurveyStatus) || null;
       const qs = questionsRef.current || [];
       if (!surveyStatus) return;
       if (surveyStatus.ended) setStage("done");
@@ -94,8 +94,9 @@ export default function SessionPage() {
       else setStage("main");
       setStatus("ready");
 
-      // 并行加载对参与者可见的测试背景规则
-      fetch("/api/rules")
+      // 并行加载对参与者可见的测试背景规则（按当前臂过滤）
+      const arm = info?.arm;
+      fetch(`/api/rules${arm ? `?arm=${encodeURIComponent(arm)}` : ""}`)
         .then((r) => r.json())
         .then((rd) => {
           if (rd.ok) setBackgroundRules(rd.rules);
