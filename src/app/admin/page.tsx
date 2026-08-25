@@ -75,7 +75,11 @@ function AdminInner() {
   const [cleanStatus, setCleanStatus] = useState("all");
   const [cleanEmptyOnly, setCleanEmptyOnly] = useState(false);
   const [cleanFrom, setCleanFrom] = useState("");
-  const [cleanTo, setCleanTo] = useState("");
+  // 结束日期默认当天（浏览器本地时区），便于「查今天及之前」
+  const [cleanTo, setCleanTo] = useState(() => {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  });
   const [cleanQ, setCleanQ] = useState("");
   const [cleanList, setCleanList] = useState<any[]>([]);
   const [cleanSel, setCleanSel] = useState<Set<string>>(new Set());
@@ -344,6 +348,13 @@ function AdminInner() {
 
   // ===== 数据清理：会话筛选 / 批量删除 =====
   async function searchSessions() {
+    // 结束日期不能早于起始日期（YYYY-MM-DD 字典序与日历序一致，可直接比较字符串）
+    if (cleanFrom && cleanTo && cleanTo < cleanFrom) {
+      setCleanMsg("结束日期不能早于起始日期，请调整后重试。");
+      setCleanList([]);
+      setCleanSel(new Set());
+      return;
+    }
     setCleanBusy(true);
     setCleanMsg(null);
     setCleanSel(new Set());
@@ -914,7 +925,7 @@ function AdminInner() {
             文件名含臂标识（如 <code>messages_socratic.xlsx</code>）；不选「按臂」则导出全部。
           </p>
           <p className="mt-1 text-xs text-zinc-400">
-            宽表为每会话一行，含前/后测（按配置题数动态展开）、时长、轮次、完成度、上传数、反思分（reflection_score）与对话全文（messages_text），可直接喂统计软件做 ANOVA / 前后测差值分析。
+            宽表为每会话一行，含前/后测（按配置题数动态展开）、时长、轮次、完成度、上传数、反思分（reflection_score）、盲化猜测（guessed_group）、<code>user_text</code>（仅用户消息）/ <code>assistant_text</code>（仅 GAI 助手消息）/ <code>messages_text</code>（合并全文）。后两列拆开后便于下游文本分析（按列直接读取无需解析角色）。
           </p>
           <p className="mt-1 text-xs text-zinc-400">
             反思分需先点「批量反思打分」由 DeepSeek 评级（0–3）。组间文本特征对比（提问密度/第一人称/行动词/情绪词）可用仓库 <code>scripts/text_features.py</code> 对 messages.csv 跑，无需新功能。
@@ -1045,6 +1056,7 @@ function AdminInner() {
               <input
                 type="date"
                 value={cleanTo}
+                min={cleanFrom || undefined}
                 onChange={(e) => setCleanTo(e.target.value)}
                 className="mt-1 block rounded-lg border border-zinc-300 px-2 py-1.5 text-sm text-zinc-900"
               />

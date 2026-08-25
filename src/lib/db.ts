@@ -726,13 +726,14 @@ export async function saveSurveyConfig(questions: string[]): Promise<void> {
   if (error) throw new DbError(error.message);
 }
 
-/** 统一宽表导出（每会话一行，含前/后测、时长、轮次、完成度、上传数、反思分、对话全文）。
- *  返回 { rows, cols }：列头随配置题数动态展开，供导出路由直接生成 CSV。 */
+/** 统一宽表导出（每会话一行，含前/后测、时长、轮次、完成度、上传数、反思分、
+ *  GAI对话/回答拆分列、对话全文）。返回 { rows, cols }，列头随配置题数动态展开。 */
 export async function exportWide(): Promise<{ rows: any[]; cols: string[] }> {
   const db = requireDb();
+  // 主查询不取 guessed_group（避免未跑 10.4 迁移时整个导出失败），单独 guarded 读取
   const { data: sessions, error: se } = await db
     .from("sessions")
-    .select("id, participant_id, arm, status, started_at, ended_at, turns, guessed_group")
+    .select("id, participant_id, arm, status, started_at, ended_at, turns")
     .order("started_at", { ascending: true });
   if (se) throw new DbError(se.message);
   const { data: surveys, error: sve } = await db
@@ -766,6 +767,19 @@ export async function exportWide(): Promise<{ rows: any[]; cols: string[] }> {
     /* 未执行 10.2 迁移则跳过反思分列 */
   }
 
+  // guessed_group：A3 盲化字段，旧库未跑 10.4 迁移时整列缺失，单独 guarded 读取
+  const guessedMap = new Map<string, string | null>();
+  try {
+    const { data: gg, error: gge } = await db
+      .from("sessions")
+      .select("id, guessed_group");
+    if (!gge)
+      for (const g of (gg as any[]) ?? [])
+        guessedMap.set(g.id, g.guessed_group ?? null);
+  } catch {
+    /* 未执行 10.4 迁移则跳过 guessed_group 列 */
+  }
+
   // 当前配置题数（用于动态展开 pre_qN / post_qN 列）
   let cfgQ = 0;
   try {
@@ -795,6 +809,9 @@ export async function exportWide(): Promise<{ rows: any[]; cols: string[] }> {
 
   const msgStat = new Map<string, { total: number; user: number }>();
   const msgTextMap = new Map<string, string[]>();
+  // GAI 对话/回答拆分列：用户消息与助手消息分别拼接，方便下游文本分析
+  const userTextMap = new Map<string, string[]>();
+  const assistantTextMap = new Map<string, string[]>();
   for (const m of (msgs as any[]) ?? []) {
     const s = msgStat.get(m.session_id) || { total: 0, user: 0 };
     s.total += 1;
@@ -805,6 +822,15 @@ export async function exportWide(): Promise<{ rows: any[]; cols: string[] }> {
     const arr = msgTextMap.get(m.session_id) || [];
     arr.push(`${speaker}：${m.content}`);
     msgTextMap.set(m.session_id, arr);
+    if (m.role === "user") {
+      const ua = userTextMap.get(m.session_id) || [];
+      ua.push(m.content);
+      userTextMap.set(m.session_id, ua);
+    } else if (m.role === "assistant") {
+      const aa = assistantTextMap.get(m.session_id) || [];
+      aa.push(m.content);
+      assistantTextMap.set(m.session_id, aa);
+    }
   }
 
   const upStat = new Map<string, number>();
@@ -841,9 +867,11 @@ export async function exportWide(): Promise<{ rows: any[]; cols: string[] }> {
       user_turns: ms.user,
       upload_count: upStat.get(row.id) ?? 0,
       reflection_score: reflMap.get(row.id) ?? "",
-      guessed_group: row.guessed_group ?? "",
+      guessed_group: guessedMap.get(row.id) ?? "",
       pre_answers: pre.join("|"),
       post_answers: post.join("|"),
+      user_text: (userTextMap.get(row.id) || []).join("\n\n---\n\n"),
+      assistant_text: (assistantTextMap.get(row.id) || []).join("\n\n---\n\n"),
       messages_text: (msgTextMap.get(row.id) || []).join("\n"),
     };
     for (let i = 0; i < maxQ; i++) {
@@ -872,6 +900,8 @@ export async function exportWide(): Promise<{ rows: any[]; cols: string[] }> {
     "post_answers",
     ...Array.from({ length: maxQ }, (_, i) => `pre_q${i + 1}`),
     ...Array.from({ length: maxQ }, (_, i) => `post_q${i + 1}`),
+    "user_text",
+    "assistant_text",
     "messages_text",
   ];
   return { rows, cols };
