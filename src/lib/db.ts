@@ -198,6 +198,119 @@ export async function deleteUnusedCodes(): Promise<number> {
   return data?.length ?? 0;
 }
 
+/** 按条件筛选会话列表（供后台数据清理面板）。
+ *  返回每条会话的聚合信息：消息数、是否含问卷/上传、所属分组码。 */
+export async function listSessions(f: {
+  arm?: string;
+  status?: string;
+  emptyOnly?: boolean;
+  from?: string;
+  to?: string;
+  q?: string;
+}): Promise<any[]> {
+  const db = requireDb();
+  let qb = db.from("sessions").select(
+    "id, participant_id, arm, status, started_at, ended_at, turns, participants(code), messages(count), surveys(count), uploads(count)",
+  );
+  if (f.arm && f.arm !== "all") qb = qb.eq("arm", f.arm);
+  if (f.status && f.status !== "all") qb = qb.eq("status", f.status);
+  if (f.from) qb = qb.gte("started_at", f.from);
+  if (f.to) qb = qb.lte("started_at", f.to + "T23:59:59");
+  if (f.q && f.q.trim())
+    qb = qb.or(`id.ilike.%${f.q.trim()}%,participant_id.ilike.%${f.q.trim()}%`);
+  qb = qb.order("started_at", { ascending: false });
+  const { data, error } = await qb;
+  if (error) throw new DbError(error.message);
+  let rows = (data as any[]) ?? [];
+  if (f.emptyOnly)
+    rows = rows.filter((r) => (r.messages?.[0]?.count ?? 0) === 0);
+  return rows.map((r) => ({
+    id: r.id,
+    participantId: r.participant_id,
+    arm: r.arm,
+    status: r.status,
+    startedAt: r.started_at,
+    endedAt: r.ended_at,
+    turns: r.turns,
+    groupCode: r.participants?.code ?? "",
+    messageCount: r.messages?.[0]?.count ?? 0,
+    hasSurvey: (r.surveys?.[0]?.count ?? 0) > 0,
+    hasUpload: (r.uploads?.[0]?.count ?? 0) > 0,
+  }));
+}
+
+/** 批量删除指定会话及其全部研究数据（级联调用 deleteParticipantData）。
+ *  返回成功数与失败明细。 */
+export async function deleteSessionsByIds(
+  sessionIds: string[],
+): Promise<{ deleted: number; errors: { sessionId: string; error: string }[] }> {
+  const db = requireDb();
+  let deleted = 0;
+  const errors: { sessionId: string; error: string }[] = [];
+  for (const sid of sessionIds) {
+    try {
+      const { data: s, error: se } = await db
+        .from("sessions")
+        .select("participant_id")
+        .eq("id", sid)
+        .maybeSingle();
+      if (se) throw new DbError(se.message);
+      if (!s) {
+        errors.push({ sessionId: sid, error: "会话不存在" });
+        continue;
+      }
+      await deleteParticipantData(sid, (s as any).participant_id);
+      deleted++;
+    } catch (e: any) {
+      errors.push({ sessionId: sid, error: e?.message || "删除失败" });
+    }
+  }
+  return { deleted, errors };
+}
+
+/** 删除指定的分组码。默认跳过已使用（used_count>0）的码以防误删真实数据；
+ *  force=true 时强制删除（含已用码）。返回已删/跳过/失败明细。 */
+export async function deleteCodesByValues(
+  codes: string[],
+  force = false,
+): Promise<{
+  deleted: string[];
+  skippedUsed: string[];
+  errors: { code: string; error: string }[];
+}> {
+  const db = requireDb();
+  const deleted: string[] = [];
+  const skippedUsed: string[] = [];
+  const errors: { code: string; error: string }[] = [];
+  for (const code of codes) {
+    try {
+      const { data: row, error: re } = await db
+        .from("group_codes")
+        .select("used_count")
+        .eq("code", code)
+        .maybeSingle();
+      if (re) throw new DbError(re.message);
+      if (!row) {
+        errors.push({ code, error: "分组码不存在" });
+        continue;
+      }
+      if (!force && (row.used_count || 0) > 0) {
+        skippedUsed.push(code);
+        continue;
+      }
+      const { error: de } = await db
+        .from("group_codes")
+        .delete()
+        .eq("code", code);
+      if (de) throw new DbError(de.message);
+      deleted.push(code);
+    } catch (e: any) {
+      errors.push({ code, error: e?.message || "删除失败" });
+    }
+  }
+  return { deleted, skippedUsed, errors };
+}
+
 /** 保存一条上传/粘贴记录，返回 id */
 export async function saveUpload(
   participantId: string,

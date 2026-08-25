@@ -70,6 +70,21 @@ function AdminInner() {
   } | null>(null);
   const [scoreError, setScoreError] = useState<string | null>(null);
 
+  // 数据清理：会话筛选 + 批量删除
+  const [cleanArm, setCleanArm] = useState("all");
+  const [cleanStatus, setCleanStatus] = useState("all");
+  const [cleanEmptyOnly, setCleanEmptyOnly] = useState(false);
+  const [cleanFrom, setCleanFrom] = useState("");
+  const [cleanTo, setCleanTo] = useState("");
+  const [cleanQ, setCleanQ] = useState("");
+  const [cleanList, setCleanList] = useState<any[]>([]);
+  const [cleanSel, setCleanSel] = useState<Set<string>>(new Set());
+  const [cleanBusy, setCleanBusy] = useState(false);
+  const [cleanMsg, setCleanMsg] = useState<string | null>(null);
+  // 数据清理：分组码选择删除
+  const [codeSel, setCodeSel] = useState<Set<string>>(new Set());
+  const [codeDelBusy, setCodeDelBusy] = useState(false);
+
   // 导出选项：格式（csv/xlsx）+ 按臂
   const [expFmt, setExpFmt] = useState<string>("csv");
   const [expArm, setExpArm] = useState<string>("all");
@@ -326,6 +341,112 @@ function AdminInner() {
     return (
       <div className="p-10 text-sm text-zinc-500">加载中…</div>
     );
+
+  // ===== 数据清理：会话筛选 / 批量删除 =====
+  async function searchSessions() {
+    setCleanBusy(true);
+    setCleanMsg(null);
+    setCleanSel(new Set());
+    try {
+      const p = new URLSearchParams();
+      if (cleanArm !== "all") p.set("arm", cleanArm);
+      if (cleanStatus !== "all") p.set("status", cleanStatus);
+      if (cleanEmptyOnly) p.set("emptyOnly", "1");
+      if (cleanFrom) p.set("from", cleanFrom);
+      if (cleanTo) p.set("to", cleanTo);
+      if (cleanQ.trim()) p.set("q", cleanQ.trim());
+      const r = await fetch("/api/admin/sessions?" + p.toString());
+      const d = await r.json();
+      if (d.ok) setCleanList(d.sessions);
+      else setCleanMsg("查询失败：" + (d.error || ""));
+    } catch (e: any) {
+      setCleanMsg("查询失败：" + (e?.message || "网络错误"));
+    } finally {
+      setCleanBusy(false);
+    }
+  }
+
+  async function deleteSelectedSessions() {
+    const ids = [...cleanSel];
+    if (ids.length === 0) return;
+    if (
+      !window.confirm(
+        `确认删除选中的 ${ids.length} 个会话及其全部数据（消息 / 上传 / 问卷 / 反思分 / 互评）？此操作不可恢复。`,
+      )
+    )
+      return;
+    setCleanBusy(true);
+    setCleanMsg(null);
+    try {
+      const r = await fetch("/api/admin/sessions", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionIds: ids }),
+      });
+      const d = await r.json();
+      if (d.ok) {
+        const fail = d.errors?.length ? `，${d.errors.length} 个失败` : "";
+        setCleanMsg(`已删除 ${d.deleted} 个会话${fail}`);
+        setCleanSel(new Set());
+        await searchSessions();
+      } else setCleanMsg("删除失败：" + (d.error || ""));
+    } catch (e: any) {
+      setCleanMsg("删除失败：" + (e?.message || "网络错误"));
+    } finally {
+      setCleanBusy(false);
+    }
+  }
+
+  function toggleCleanSel(id: string) {
+    setCleanSel((prev) => {
+      const n = new Set(prev);
+      n.has(id) ? n.delete(id) : n.add(id);
+      return n;
+    });
+  }
+
+  // ===== 数据清理：分组码选择删除 =====
+  async function deleteSelectedCodes() {
+    const codes = [...codeSel];
+    if (codes.length === 0) return;
+    if (
+      !window.confirm(
+        `确认删除选中的 ${codes.length} 个分组码？已使用的码会被跳过（除非强制）。`,
+      )
+    )
+      return;
+    setCodeDelBusy(true);
+    try {
+      const r = await fetch("/api/admin/codes", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ codes }),
+      });
+      const d = await r.json();
+      if (d.ok) {
+        let m = `已删除 ${d.deleted?.length || 0} 个分组码`;
+        if (d.skippedUsed?.length)
+          m += `；跳过 ${d.skippedUsed.length} 个已用码（用 force 可强制）`;
+        if (d.errors?.length) m += `；${d.errors.length} 个失败`;
+        setCleanMsg(m);
+        setCodeSel(new Set());
+        loadCodes();
+      } else setCleanMsg("删除失败：" + (d.error || ""));
+    } catch (e: any) {
+      setCleanMsg("删除失败：" + (e?.message || "网络错误"));
+    } finally {
+      setCodeDelBusy(false);
+    }
+  }
+
+  function toggleCodeSel(code: string) {
+    setCodeSel((prev) => {
+      const n = new Set(prev);
+      n.has(code) ? n.delete(code) : n.add(code);
+      return n;
+    });
+  }
+
   if (!isSignedIn)
     return (
       <div className="flex min-h-screen items-center justify-center bg-zinc-50">
@@ -455,15 +576,40 @@ function AdminInner() {
             <h2 className="text-sm font-semibold text-zinc-900">
               分组码列表（{codes.length}）
             </h2>
-            <button
-              onClick={cleanUnusedCodes}
-              disabled={busy || codes.every((c) => (c.used_count || 0) > 0)}
-              className="rounded-lg border border-rose-200 px-3 py-1.5 text-xs text-rose-600 hover:bg-rose-50 disabled:cursor-not-allowed disabled:opacity-40"
-              title="仅删除 已用 0 次 的分组码；进行中（已用 > 0）的码保留"
-            >
-              清除未使用的码
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={deleteSelectedCodes}
+                disabled={codeSel.size === 0 || codeDelBusy}
+                className="rounded-lg bg-rose-600 px-3 py-1.5 text-xs text-white disabled:opacity-40"
+                title="删除勾选的分组码（已使用的码会被跳过，除非强制）"
+              >
+                删除选中（{codeSel.size}）
+              </button>
+              <button
+                onClick={cleanUnusedCodes}
+                disabled={busy || codes.every((c) => (c.used_count || 0) > 0)}
+                className="rounded-lg border border-rose-200 px-3 py-1.5 text-xs text-rose-600 hover:bg-rose-50 disabled:cursor-not-allowed disabled:opacity-40"
+                title="仅删除 已用 0 次 的分组码；进行中（已用 > 0）的码保留"
+              >
+                清除未使用的码
+              </button>
+            </div>
           </div>
+          <label className="mt-2 flex items-center gap-2 text-xs text-zinc-600">
+            <input
+              type="checkbox"
+              checked={codes.length > 0 && codeSel.size === codes.length}
+              onChange={(e) =>
+                setCodeSel(
+                  e.target.checked
+                    ? new Set(codes.map((c) => c.code))
+                    : new Set(),
+                )
+              }
+              className="h-4 w-4 rounded border-zinc-300"
+            />
+            全选
+          </label>
           <div className="scroll-thin mt-3 max-h-64 space-y-1 overflow-y-auto">
             {codes.length === 0 && (
               <p className="text-xs text-zinc-400">暂无分组码</p>
@@ -473,7 +619,15 @@ function AdminInner() {
                 key={c.code}
                 className="flex items-center justify-between rounded-lg bg-zinc-50 px-3 py-2 text-xs"
               >
-                <span className="font-mono text-zinc-700">{c.code}</span>
+                <span className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    checked={codeSel.has(c.code)}
+                    onChange={() => toggleCodeSel(c.code)}
+                    className="h-4 w-4 rounded border-zinc-300"
+                  />
+                  <span className="font-mono text-zinc-700">{c.code}</span>
+                </span>
                 <span className="text-zinc-500">
                   {ARM_OPTIONS.find((a) => a.code === c.arm)?.name ?? c.arm}
                 </span>
@@ -831,6 +985,179 @@ function AdminInner() {
           <p className="mt-3 text-xs text-zinc-400">
             平均反思分仅统计已点「批量反思打分」的已完成会话；轮次=用户消息数，时长=结束−开始。
           </p>
+        </section>
+
+        {/* 会话数据清理：筛选 + 批量删除（测试 / 废弃数据） */}
+        <section className="rounded-2xl border border-rose-200 bg-white p-5">
+          <h2 className="text-sm font-semibold text-zinc-900">
+            会话数据清理（测试 / 废弃数据）
+          </h2>
+          <p className="mt-1 text-xs text-zinc-500">
+            筛选后勾选要删除的会话，删除会级联清除其全部数据（消息 / 上传 / 问卷 / 反思分 / 互评），不可恢复。
+            「仅空会话」可快速定位未产生对话的测试 / 废弃数据。
+          </p>
+          <div className="mt-3 flex flex-wrap items-end gap-3">
+            <label className="text-xs text-zinc-500">
+              实验臂
+              <select
+                value={cleanArm}
+                onChange={(e) => setCleanArm(e.target.value)}
+                className="mt-1 block w-40 rounded-lg border border-zinc-300 px-2 py-1.5 text-sm text-zinc-900"
+              >
+                <option value="all">全部</option>
+                <option value="socratic">臂1 · 元认知引导</option>
+                <option value="free">臂2 · 自由问答</option>
+                <option value="solo">臂3 · 自主思考</option>
+              </select>
+            </label>
+            <label className="text-xs text-zinc-500">
+              状态
+              <select
+                value={cleanStatus}
+                onChange={(e) => setCleanStatus(e.target.value)}
+                className="mt-1 block w-32 rounded-lg border border-zinc-300 px-2 py-1.5 text-sm text-zinc-900"
+              >
+                <option value="all">全部</option>
+                <option value="done">已完成</option>
+                <option value="active">进行中</option>
+              </select>
+            </label>
+            <label className="flex items-center gap-1.5 text-xs text-zinc-600">
+              <input
+                type="checkbox"
+                checked={cleanEmptyOnly}
+                onChange={(e) => setCleanEmptyOnly(e.target.checked)}
+                className="h-4 w-4 rounded border-zinc-300"
+              />
+              仅空会话（0 条消息）
+            </label>
+            <label className="text-xs text-zinc-500">
+              起始
+              <input
+                type="date"
+                value={cleanFrom}
+                onChange={(e) => setCleanFrom(e.target.value)}
+                className="mt-1 block rounded-lg border border-zinc-300 px-2 py-1.5 text-sm text-zinc-900"
+              />
+            </label>
+            <label className="text-xs text-zinc-500">
+              结束
+              <input
+                type="date"
+                value={cleanTo}
+                onChange={(e) => setCleanTo(e.target.value)}
+                className="mt-1 block rounded-lg border border-zinc-300 px-2 py-1.5 text-sm text-zinc-900"
+              />
+            </label>
+            <label className="text-xs text-zinc-500">
+              搜索（ID / 参与者）
+              <input
+                value={cleanQ}
+                onChange={(e) => setCleanQ(e.target.value)}
+                placeholder="前缀或关键字"
+                className="mt-1 block w-44 rounded-lg border border-zinc-300 px-2 py-1.5 text-sm text-zinc-900"
+              />
+            </label>
+            <button
+              onClick={searchSessions}
+              disabled={cleanBusy}
+              className="rounded-lg bg-zinc-900 px-4 py-2 text-sm text-white disabled:opacity-40"
+            >
+              {cleanBusy ? "查询中…" : "查询"}
+            </button>
+          </div>
+
+          {cleanMsg && (
+            <div className="mt-3 rounded-lg bg-zinc-50 px-3 py-2 text-xs text-zinc-700">
+              {cleanMsg}
+            </div>
+          )}
+
+          {cleanList.length > 0 && (
+            <div className="mt-4">
+              <div className="mb-2 flex items-center justify-between">
+                <label className="flex items-center gap-2 text-xs text-zinc-600">
+                  <input
+                    type="checkbox"
+                    checked={cleanSel.size === cleanList.length}
+                    onChange={(e) =>
+                      setCleanSel(
+                        e.target.checked
+                          ? new Set(cleanList.map((r) => r.id))
+                          : new Set(),
+                      )
+                    }
+                    className="h-4 w-4 rounded border-zinc-300"
+                  />
+                  全选（{cleanList.length}）
+                </label>
+                <button
+                  onClick={deleteSelectedSessions}
+                  disabled={cleanSel.size === 0 || cleanBusy}
+                  className="rounded-lg bg-rose-600 px-3 py-1.5 text-xs text-white disabled:opacity-40"
+                >
+                  删除选中（{cleanSel.size}）
+                </button>
+              </div>
+              <div className="scroll-thin max-h-80 space-y-1 overflow-y-auto rounded-lg border border-zinc-100">
+                {cleanList.map((r) => (
+                  <div
+                    key={r.id}
+                    className="flex flex-wrap items-center gap-x-3 gap-y-1 bg-zinc-50 px-3 py-2 text-xs"
+                  >
+                    <input
+                      type="checkbox"
+                      checked={cleanSel.has(r.id)}
+                      onChange={() => toggleCleanSel(r.id)}
+                      className="h-4 w-4 rounded border-zinc-300"
+                    />
+                    <span className="font-mono text-zinc-400">
+                      {String(r.id).slice(0, 8)}
+                    </span>
+                    <span className="text-zinc-500">
+                      {r.arm === "socratic"
+                        ? "臂1"
+                        : r.arm === "free"
+                          ? "臂2"
+                          : r.arm === "solo"
+                            ? "臂3"
+                            : r.arm}
+                    </span>
+                    <span
+                      className={
+                        r.status === "done"
+                          ? "text-emerald-600"
+                          : "text-amber-600"
+                      }
+                    >
+                      {r.status === "done" ? "已完成" : "进行中"}
+                    </span>
+                    <span className="text-zinc-400">
+                      {r.startedAt
+                        ? new Date(r.startedAt).toLocaleString("zh-CN")
+                        : "—"}
+                    </span>
+                    <span className="text-zinc-500">消息 {r.messageCount}</span>
+                    {r.groupCode && (
+                      <span className="font-mono text-zinc-400">
+                        码 {r.groupCode}
+                      </span>
+                    )}
+                    {r.hasSurvey && (
+                      <span className="rounded bg-indigo-50 px-1.5 py-0.5 text-indigo-600">
+                        有问卷
+                      </span>
+                    )}
+                    {r.hasUpload && (
+                      <span className="rounded bg-sky-50 px-1.5 py-0.5 text-sky-600">
+                        有上传
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </section>
       </main>
     </div>
