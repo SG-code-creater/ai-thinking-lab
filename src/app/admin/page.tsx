@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useUser, SignIn } from "@clerk/nextjs";
+import type { ArmStat } from "@/lib/db";
 
 const PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
@@ -56,6 +57,13 @@ function AdminInner() {
   // D2 反思深度批处理打分
   const [scoreBusy, setScoreBusy] = useState(false);
 
+  // 导出选项：格式（csv/xlsx）+ 按臂
+  const [expFmt, setExpFmt] = useState<string>("csv");
+  const [expArm, setExpArm] = useState<string>("all");
+
+  // 进度看板（按臂聚合）
+  const [armStats, setArmStats] = useState<ArmStat[]>([]);
+
   async function loadMeta() {
     const r = await fetch("/api/admin/arm");
     const d = await r.json();
@@ -70,6 +78,15 @@ function AdminInner() {
     const r = await fetch("/api/admin/rules");
     const d = await r.json();
     if (d.ok) setRules(d.rules);
+  }
+  async function loadStats() {
+    try {
+      const r = await fetch("/api/admin/stats");
+      const d = await r.json();
+      if (d.ok) setArmStats(d.stats);
+    } catch {
+      /* 忽略 */
+    }
   }
   async function loadSurveyQuestions() {
     const r = await fetch("/api/admin/survey-questions");
@@ -86,6 +103,7 @@ function AdminInner() {
       loadCodes();
       loadRules();
       loadSurveyQuestions();
+      loadStats();
     }
   }, [isSignedIn]);
 
@@ -598,26 +616,61 @@ function AdminInner() {
         <section className="rounded-2xl border border-zinc-200 bg-white p-5">
           <h2 className="text-sm font-semibold text-zinc-900">数据导出</h2>
           <p className="mt-1 text-xs text-zinc-500">
-            导出后用于三组文本对比分析（AI 是限制还是增强思考）。
+            导出后用于三组文本对比分析（AI 是限制还是增强思考）。可按臂拆分导出，便于组间对比。
           </p>
+
+          {/* 导出选项：格式 + 臂 */}
+          <div className="mt-3 flex flex-wrap items-center gap-3">
+            <div className="flex items-center gap-2 text-xs text-zinc-600">
+              <span>格式</span>
+              <select
+                value={expFmt}
+                onChange={(e) => setExpFmt(e.target.value)}
+                className="rounded-lg border border-zinc-200 px-2 py-1.5 text-sm"
+              >
+                <option value="csv">CSV</option>
+                <option value="xlsx">Excel (xlsx)</option>
+              </select>
+            </div>
+            <div className="flex items-center gap-2 text-xs text-zinc-600">
+              <span>按臂</span>
+              <select
+                value={expArm}
+                onChange={(e) => setExpArm(e.target.value)}
+                className="rounded-lg border border-zinc-200 px-2 py-1.5 text-sm"
+              >
+                <option value="all">全部</option>
+                <option value="socratic">臂1 苏格拉底</option>
+                <option value="free">臂2 自由问答</option>
+                <option value="solo">臂3 无AI</option>
+              </select>
+            </div>
+          </div>
+
           <div className="mt-3 flex flex-wrap gap-2">
             <a
-              href="/api/admin/export?type=messages"
+              href={`/api/admin/export?type=messages&format=${expFmt}${expArm !== "all" ? `&arm=${expArm}` : ""}`}
               className="rounded-lg border border-zinc-200 px-3 py-2 text-sm text-zinc-600 hover:bg-zinc-50"
             >
-              导出对话（messages.csv）
+              导出对话
             </a>
             <a
-              href="/api/admin/export?type=uploads"
+              href={`/api/admin/export?type=uploads&format=${expFmt}${expArm !== "all" ? `&arm=${expArm}` : ""}`}
               className="rounded-lg border border-zinc-200 px-3 py-2 text-sm text-zinc-600 hover:bg-zinc-50"
             >
-              导出文档收集（uploads.csv）
+              导出文档收集
             </a>
             <a
-              href="/api/admin/export?type=wide"
+              href={`/api/admin/export?type=peer&format=${expFmt}${expArm !== "all" ? `&arm=${expArm}` : ""}`}
+              className="rounded-lg border border-zinc-200 px-3 py-2 text-sm text-zinc-600 hover:bg-zinc-50"
+            >
+              导出同伴互评
+            </a>
+            <a
+              href={`/api/admin/export?type=wide&format=${expFmt}${expArm !== "all" ? `&arm=${expArm}` : ""}`}
               className="rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-2 text-sm font-medium text-indigo-700 hover:bg-indigo-100"
             >
-              导出统一宽表（wide.csv）
+              导出统一宽表
             </a>
             <button
               onClick={scoreReflection}
@@ -628,10 +681,79 @@ function AdminInner() {
             </button>
           </div>
           <p className="mt-2 text-xs text-zinc-400">
+            文件名含臂标识（如 <code>messages_socratic.xlsx</code>）；不选「按臂」则导出全部。
+          </p>
+          <p className="mt-1 text-xs text-zinc-400">
             宽表为每会话一行，含前/后测（按配置题数动态展开）、时长、轮次、完成度、上传数、反思分（reflection_score）与对话全文（messages_text），可直接喂统计软件做 ANOVA / 前后测差值分析。
           </p>
           <p className="mt-1 text-xs text-zinc-400">
             反思分需先点「批量反思打分」由 DeepSeek 评级（0–3）。组间文本特征对比（提问密度/第一人称/行动词/情绪词）可用仓库 <code>scripts/text_features.py</code> 对 messages.csv 跑，无需新功能。
+          </p>
+        </section>
+
+        {/* 进度看板 */}
+        <section className="rounded-2xl border border-zinc-200 bg-white p-5">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm font-semibold text-zinc-900">进度看板（按臂）</h2>
+            <button
+              onClick={loadStats}
+              className="rounded-lg border border-zinc-200 px-2.5 py-1 text-xs text-zinc-500 hover:bg-zinc-50"
+            >
+              刷新
+            </button>
+          </div>
+          <p className="mt-1 text-xs text-zinc-500">
+            实时掌握各实验臂的数据收集进度，便于判断何时达到可分析样本量。
+          </p>
+          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
+            {armStats.length === 0 && (
+              <p className="text-xs text-zinc-400">暂无数据，开始收集后会自动显示。</p>
+            )}
+            {armStats.map((s) => {
+              const pct = Math.round(s.completionRate * 100);
+              return (
+                <div
+                  key={s.arm}
+                  className="rounded-xl border border-zinc-100 bg-zinc-50 p-4"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium text-zinc-800">
+                      {s.label}
+                    </span>
+                    <span className="text-xs text-zinc-400">
+                      {s.completed}/{s.total}
+                    </span>
+                  </div>
+                  {/* 完成率进度条 */}
+                  <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-zinc-200">
+                    <div
+                      className="h-full rounded-full bg-indigo-500"
+                      style={{ width: `${pct}%` }}
+                    />
+                  </div>
+                  <div className="mt-1 text-xs text-zinc-500">
+                    完成率 {pct}%
+                  </div>
+                  <dl className="mt-3 space-y-1 text-xs text-zinc-600">
+                    <div className="flex justify-between">
+                      <dt>平均轮次</dt>
+                      <dd>{s.avgTurns == null ? "—" : s.avgTurns}</dd>
+                    </div>
+                    <div className="flex justify-between">
+                      <dt>平均时长</dt>
+                      <dd>{s.avgDurationMin == null ? "—" : `${s.avgDurationMin} 分`}</dd>
+                    </div>
+                    <div className="flex justify-between">
+                      <dt>平均反思分</dt>
+                      <dd>{s.avgReflection == null ? "—" : s.avgReflection}</dd>
+                    </div>
+                  </dl>
+                </div>
+              );
+            })}
+          </div>
+          <p className="mt-3 text-xs text-zinc-400">
+            平均反思分仅统计已点「批量反思打分」的已完成会话；轮次=用户消息数，时长=结束−开始。
           </p>
         </section>
       </main>

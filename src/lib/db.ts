@@ -236,45 +236,192 @@ export async function listUploads(participantId: string): Promise<any[]> {
   return (data as any[]) ?? [];
 }
 
-/** 导出对话（含 arm / participant 维度，供文本分析） */
-export async function exportMessages(): Promise<any[]> {
+/** 导出对话（含 arm / participant 维度，供文本分析）。
+ *  arm 可选：传入时仅导出该臂 session 的对话。 */
+export async function exportMessages(arm?: string): Promise<any[]> {
   const db = requireDb();
-  const { data, error } = await db
+  let query = db
     .from("messages")
     .select(
       "session_id, role, content, blocked, is_summary, created_at, sessions(arm, participant_id)",
     )
     .order("created_at", { ascending: true });
+  if (arm) {
+    const { data: sess } = await db
+      .from("sessions")
+      .select("id")
+      .eq("arm", arm);
+    const ids = (sess as any[] | null)?.map((s) => s.id) ?? [];
+    if (ids.length === 0) return [];
+    query = query.in("session_id", ids);
+  }
+  const { data, error } = await query;
   if (error) throw new DbError(error.message);
   return (data as any[]) ?? [];
 }
 
-/** 导出上传记录 */
-export async function exportUploads(): Promise<any[]> {
+/** 导出上传记录。arm 可选：传入时仅导出该臂 session 的上传。 */
+export async function exportUploads(arm?: string): Promise<any[]> {
   const db = requireDb();
-  const { data, error } = await db
+  let query = db
     .from("uploads")
     .select(
       "id, participant_id, session_id, filename, size_bytes, text_content, created_at",
     )
     .order("created_at", { ascending: true });
+  if (arm) {
+    const { data: sess } = await db
+      .from("sessions")
+      .select("id")
+      .eq("arm", arm);
+    const ids = (sess as any[] | null)?.map((s) => s.id) ?? [];
+    if (ids.length === 0) return [];
+    query = query.in("session_id", ids);
+  }
+  const { data, error } = await query;
   if (error) throw new DbError(error.message);
   return (data as any[]) ?? [];
+}
+
+/** 导出臂3 匿名同伴互评（含评分者臂/参与者、被评文本摘要、评分与评语）。
+ *  arm 可选：传入时仅导出该臂 reviewer 提交的互评。 */
+export async function exportPeerReviews(arm?: string): Promise<any[]> {
+  const db = requireDb();
+  let query = db
+    .from("peer_reviews")
+    .select(
+      "id, target_upload_id, rating, comment, created_at, " +
+        "sessions!peer_reviews_reviewer_session_id_fkey(arm, participant_id), " +
+        "uploads(filename, text_content)",
+    )
+    .order("created_at", { ascending: true });
+  if (arm) {
+    // 评分者侧 session 的 arm 过滤：先查该臂 session，再 in 过滤
+    const { data: sess } = await db
+      .from("sessions")
+      .select("id")
+      .eq("arm", arm);
+    const ids = (sess as any[] | null)?.map((s) => s.id) ?? [];
+    if (ids.length === 0) return [];
+    query = query.in("reviewer_session_id", ids);
+  }
+  const { data, error } = await query;
+  if (error) throw new DbError(error.message);
+  return (data as any[]) ?? [];
+}
+
+// ============ 进度看板（按臂聚合） ============
+
+export const ARM_LABELS: Record<string, string> = {
+  socratic: "臂1 苏格拉底",
+  free: "臂2 自由问答",
+  solo: "臂3 无AI",
+};
+
+export interface ArmStat {
+  arm: string;
+  label: string;
+  total: number;
+  completed: number;
+  completionRate: number; // 0-1
+  avgTurns: number | null; // 已完成会话平均轮次
+  avgDurationMin: number | null; // 已完成会话平均时长（分钟）
+  avgReflection: number | null; // 已完成且已打分会话平均反思分
+}
+
+/** 按臂聚合实验进度：总数 / 完成数 / 完成率 / 平均轮次 / 平均时长 / 平均反思分。
+ *  reflection_score 单独 guarded 读取（旧库未跑 10.2 迁移时整列缺失，不致命）。 */
+export async function getArmStats(): Promise<ArmStat[]> {
+  const db = requireDb();
+  const { data, error } = await db
+    .from("sessions")
+    .select("arm, status, started_at, ended_at, turns, id");
+  if (error) throw new DbError(error.message);
+  const rows = (data as any[]) ?? [];
+
+  const reflMap = new Map<string, number | null>();
+  try {
+    const { data: rf, error: rfe } = await db
+      .from("sessions")
+      .select("id, reflection_score");
+    if (!rfe)
+      for (const r of (rf as any[]) ?? [])
+        reflMap.set(r.id, r.reflection_score ?? null);
+  } catch {
+    /* 未执行 10.2 迁移则跳过反思分列 */
+  }
+  // 把反思分映射回行
+  for (const r of rows) r.reflection_score = reflMap.get(r.id) ?? null;
+
+  const byArm = new Map<string, any[]>();
+  for (const r of rows) {
+    const a = r.arm || "unknown";
+    if (!byArm.has(a)) byArm.set(a, []);
+    byArm.get(a)!.push(r);
+  }
+
+  const result: ArmStat[] = [];
+  // 固定臂顺序，便于看板稳定展示
+  const order = ["socratic", "free", "solo"];
+  for (const a of order) {
+    const list = byArm.get(a);
+    if (!list) continue;
+    const completed = list.filter((x) => x.status === "done");
+    const total = list.length;
+    const compRate = total ? completed.length / total : 0;
+    const turnsArr = completed.map((x) => x.turns).filter((t: any) => typeof t === "number");
+    const avgTurns = turnsArr.length
+      ? turnsArr.reduce((s: number, t: number) => s + t, 0) / turnsArr.length
+      : null;
+    const durArr = completed
+      .filter((x) => x.started_at && x.ended_at)
+      .map((x) => (new Date(x.ended_at).getTime() - new Date(x.started_at).getTime()) / 60000);
+    const avgDurationMin = durArr.length
+      ? durArr.reduce((s: number, t: number) => s + t, 0) / durArr.length
+      : null;
+    const reflArr = completed
+      .map((x) => x.reflection_score)
+      .filter((v: any) => typeof v === "number");
+    const avgReflection = reflArr.length
+      ? reflArr.reduce((s: number, t: number) => s + t, 0) / reflArr.length
+      : null;
+    result.push({
+      arm: a,
+      label: ARM_LABELS[a] || a,
+      total,
+      completed: completed.length,
+      completionRate: compRate,
+      avgTurns: avgTurns == null ? null : Math.round(avgTurns * 10) / 10,
+      avgDurationMin: avgDurationMin == null ? null : Math.round(avgDurationMin * 10) / 10,
+      avgReflection: avgReflection == null ? null : Math.round(avgReflection * 100) / 100,
+    });
+  }
+  return result;
 }
 
 // ============ 实验规则（测试背景 + 限制条件） ============
 
 export type RuleKind = "background" | "constraint";
 
-/** 列出所有实验规则（按创建时间倒序），含适用臂 arm */
+/** 列出所有实验规则（按创建时间倒序），含适用臂 arm。
+ *  若 rules 表尚未加 arm 列（迁移未跑），降级为不含 arm 的查询，保证不崩。 */
 export async function listRules(): Promise<any[]> {
   const db = requireDb();
-  const { data, error } = await db
-    .from("rules")
-    .select("id, kind, content, visible_to_participant, arm, created_at")
-    .order("created_at", { ascending: false });
-  if (error) throw new DbError(error.message);
-  return (data as any[]) ?? [];
+  try {
+    const { data, error } = await db
+      .from("rules")
+      .select("id, kind, content, visible_to_participant, arm, created_at")
+      .order("created_at", { ascending: false });
+    if (error) throw new DbError(error.message);
+    return (data as any[]) ?? [];
+  } catch {
+    const { data, error } = await db
+      .from("rules")
+      .select("id, kind, content, visible_to_participant, created_at")
+      .order("created_at", { ascending: false });
+    if (error) throw new DbError(error.message);
+    return (data as any[]) ?? [];
+  }
 }
 
 /** 新增一条规则：kind = background（测试背景）| constraint（限制条件）。
@@ -294,11 +441,22 @@ export async function createRule(
     visible_to_participant: kind === "background",
     arm: arm && arm !== "all" ? arm : null,
   });
+  // arm 列尚不存在（迁移未跑）→ 去掉 arm 重试一次
+  if (error && /arm/.test(error.message)) {
+    const { error: e2 } = await db.from("rules").insert({
+      kind,
+      content,
+      visible_to_participant: kind === "background",
+    });
+    if (e2) throw new DbError(e2.message);
+    return;
+  }
   if (error) throw new DbError(error.message);
 }
 
 /** 读取对参与者可见的测试规则（供会话页开场说明，绝不返回限制条件）。
- *  arm 用于按臂过滤：仅返回「全局规则」或「适用该 arm 的规则」。 */
+ *  arm 用于按臂过滤：仅返回「全局规则」或「适用该 arm 的规则」。
+ *  若 arm 列尚不存在（迁移未跑），降级为返回全部可见规则（全局行为）。 */
 export async function getParticipantRules(arm?: string): Promise<any[]> {
   const db = requireDb();
   let q = db
@@ -307,17 +465,35 @@ export async function getParticipantRules(arm?: string): Promise<any[]> {
     .eq("visible_to_participant", true);
   if (arm) q = q.or(`arm.is.null,arm.eq.${arm}`);
   const { data, error } = await q.order("created_at", { ascending: true });
+  if (error && arm) {
+    // 可能是 arm 列不存在 → 重试（不带 arm 过滤）
+    const r2 = await db
+      .from("rules")
+      .select("id, kind, content")
+      .eq("visible_to_participant", true)
+      .order("created_at", { ascending: true });
+    if (!r2.error) return (r2.data as any[]) ?? [];
+  }
   if (error) throw new DbError(error.message);
   return (data as any[]) ?? [];
 }
 
 /** 读取「限制条件」类规则（供注入 AI 系统提示词，约束智能体行为；参与者不可见）。
- *  arm 用于按臂过滤：仅返回「全局规则」或「适用该 arm 的规则」。 */
+ *  arm 用于按臂过滤：仅返回「全局规则」或「适用该 arm 的规则」。
+ *  若 arm 列尚不存在（迁移未跑），降级为返回全部约束规则（全局行为）。 */
 export async function getConstraintRules(arm?: string): Promise<string[]> {
   const db = requireDb();
   let q = db.from("rules").select("content").eq("kind", "constraint");
   if (arm) q = q.or(`arm.is.null,arm.eq.${arm}`);
   const { data, error } = await q.order("created_at", { ascending: true });
+  if (error && arm) {
+    const r2 = await db
+      .from("rules")
+      .select("content")
+      .eq("kind", "constraint")
+      .order("created_at", { ascending: true });
+    if (!r2.error) return ((r2.data as any[]) ?? []).map((r) => String(r.content));
+  }
   if (error) throw new DbError(error.message);
   return ((data as any[]) ?? []).map((r) => String(r.content));
 }
