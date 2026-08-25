@@ -321,3 +321,162 @@ export async function deleteRule(id: string): Promise<void> {
   const { error } = await db.from("rules").delete().eq("id", id);
   if (error) throw new DbError(error.message);
 }
+
+// ============ 前测 / 后测问卷（surveys） ============
+
+export interface SurveyAnswers {
+  q1: number;
+  q2: number;
+  q3: number;
+}
+
+/** 保存一份问卷（pre / post 各一份，upsert 按 session_id + phase） */
+export async function saveSurvey(
+  sessionId: string,
+  participantId: string,
+  arm: string,
+  phase: "pre" | "post",
+  ans: SurveyAnswers,
+): Promise<void> {
+  const db = requireDb();
+  const { error } = await db.from("surveys").upsert(
+    {
+      session_id: sessionId,
+      participant_id: participantId,
+      arm,
+      phase,
+      q1: ans.q1,
+      q2: ans.q2,
+      q3: ans.q3,
+    },
+    { onConflict: "session_id,phase" },
+  );
+  if (error) throw new DbError(error.message);
+}
+
+/** 读取某会话的问卷填写状态与会话结束状态 */
+export async function getSurveyStatus(
+  sessionId: string,
+): Promise<{
+  pre: boolean;
+  post: boolean;
+  ended: boolean;
+  endedAt: string | null;
+}> {
+  const db = requireDb();
+  const { data: svs, error: se } = await db
+    .from("surveys")
+    .select("phase")
+    .eq("session_id", sessionId);
+  if (se) throw new DbError(se.message);
+  const phases = new Set(((svs as any[]) ?? []).map((r) => r.phase));
+  const { data: sd, error: de } = await db
+    .from("sessions")
+    .select("status, ended_at")
+    .eq("id", sessionId)
+    .maybeSingle();
+  if (de) throw new DbError(de.message);
+  return {
+    pre: phases.has("pre"),
+    post: phases.has("post"),
+    ended: sd?.status === "done",
+    endedAt: sd?.ended_at ?? null,
+  };
+}
+
+/** 结束会话：写入 ended_at / status='done'，并计算轮次（user 消息数） */
+export async function endSession(sessionId: string): Promise<void> {
+  const db = requireDb();
+  const { count, error: ce } = await db
+    .from("messages")
+    .select("id", { count: "exact", head: true })
+    .eq("session_id", sessionId)
+    .eq("role", "user");
+  if (ce) throw new DbError(ce.message);
+  const turns = (count as number) ?? 0;
+  const { error } = await db
+    .from("sessions")
+    .update({
+      status: "done",
+      ended_at: new Date().toISOString(),
+      turns,
+    })
+    .eq("id", sessionId);
+  if (error) throw new DbError(error.message);
+}
+
+/** 统一宽表导出（每会话一行，含前/后测、时长、轮次、完成度、消息/上传计数） */
+export async function exportWide(): Promise<any[]> {
+  const db = requireDb();
+  const { data: sessions, error: se } = await db
+    .from("sessions")
+    .select("id, participant_id, arm, status, started_at, ended_at, turns")
+    .order("started_at", { ascending: true });
+  if (se) throw new DbError(se.message);
+  const { data: surveys, error: sve } = await db
+    .from("surveys")
+    .select("session_id, phase, q1, q2, q3");
+  if (sve) throw new DbError(sve.message);
+  const { data: parts, error: pe } = await db
+    .from("participants")
+    .select("id, code");
+  if (pe) throw new DbError(pe.message);
+  const { data: msgs, error: me } = await db
+    .from("messages")
+    .select("session_id, role");
+  if (me) throw new DbError(me.message);
+
+  const surveyMap = new Map<string, any>();
+  for (const s of (surveys as any[]) ?? []) {
+    const m = surveyMap.get(s.session_id) || {};
+    m[s.phase] = { q1: s.q1, q2: s.q2, q3: s.q3 };
+    surveyMap.set(s.session_id, m);
+  }
+  const partMap = new Map<string, string>();
+  for (const p of (parts as any[]) ?? []) partMap.set(p.id, p.code);
+
+  const msgStat = new Map<string, { total: number; user: number }>();
+  for (const m of (msgs as any[]) ?? []) {
+    const s = msgStat.get(m.session_id) || { total: 0, user: 0 };
+    s.total += 1;
+    if (m.role === "user") s.user += 1;
+    msgStat.set(m.session_id, s);
+  }
+
+  return ((sessions as any[]) ?? []).map((row) => {
+    const sv = surveyMap.get(row.id) || {};
+    const ms = msgStat.get(row.id) || { total: 0, user: 0 };
+    const durMin =
+      row.ended_at && row.started_at
+        ? Math.max(
+            0,
+            Math.round(
+              (new Date(row.ended_at).getTime() -
+                new Date(row.started_at).getTime()) /
+                60000,
+            ),
+          )
+        : null;
+    const pre = sv.pre || {};
+    const post = sv.post || {};
+    return {
+      participant_id: row.participant_id,
+      group_code: partMap.get(row.participant_id) ?? "",
+      arm: row.arm,
+      status: row.status,
+      completed: row.status === "done",
+      started_at: row.started_at,
+      ended_at: row.ended_at,
+      duration_min: durMin,
+      turns: row.turns ?? ms.user,
+      message_count: ms.total,
+      user_turns: ms.user,
+      pre_q1: pre.q1 ?? "",
+      pre_q2: pre.q2 ?? "",
+      pre_q3: pre.q3 ?? "",
+      post_q1: post.q1 ?? "",
+      post_q2: post.q2 ?? "",
+      post_q3: post.q3 ?? "",
+    };
+  });
+}

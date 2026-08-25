@@ -96,3 +96,23 @@ create index if not exists idx_rules_visible on public.rules(visible_to_particip
 -- 9.1) 已有 rules 表安全加字段（重复执行无副作用；新建库由建表语句覆盖）
 alter table if exists public.rules
   add column if not exists visible_to_participant boolean default false;
+
+-- 10) surveys：前测 / 后测问卷（反思思维自评，1–5 分）
+--     每会话 pre / post 各一份，靠 unique(session_id, phase) 保证不重复。
+create table if not exists public.surveys (
+  id             uuid primary key default gen_random_uuid(),
+  session_id     uuid not null references public.sessions(id) on delete cascade,
+  participant_id uuid not null references public.participants(id) on delete cascade,
+  arm            text not null,
+  phase          text not null check (phase in ('pre','post')),
+  q1             int not null check (q1 between 1 and 5),
+  q2             int not null check (q2 between 1 and 5),
+  q3             int not null check (q3 between 1 and 5),
+  created_at     timestamptz default now(),
+  unique (session_id, phase)
+);
+create index if not exists idx_surveys_session on public.surveys(session_id, phase);
+
+-- 10.1) sessions 增加 turns（对话轮次 = user 消息数），幂等
+alter table if exists public.sessions
+  add column if not exists turns int default 0;

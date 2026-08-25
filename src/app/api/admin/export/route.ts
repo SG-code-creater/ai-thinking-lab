@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAdminEmailFromReq, isAuthorizedAdmin } from "@/lib/auth";
-import { exportMessages, exportUploads } from "@/lib/db";
+import { exportMessages, exportUploads, exportWide } from "@/lib/db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -27,6 +27,35 @@ export async function GET(req: NextRequest) {
   const type = req.nextUrl.searchParams.get("type") || "messages";
 
   try {
+    if (type === "wide") {
+      const rows = await exportWide();
+      const csv = toCsv(rows, [
+        "participant_id",
+        "group_code",
+        "arm",
+        "status",
+        "completed",
+        "started_at",
+        "ended_at",
+        "duration_min",
+        "turns",
+        "message_count",
+        "user_turns",
+        "pre_q1",
+        "pre_q2",
+        "pre_q3",
+        "post_q1",
+        "post_q2",
+        "post_q3",
+      ]);
+      return new Response(csv, {
+        headers: {
+          "Content-Type": "text/csv; charset=utf-8",
+          "Content-Disposition": 'attachment; filename="wide.csv"',
+        },
+      });
+    }
+
     if (type === "uploads") {
       const rows = await exportUploads();
       const csv = toCsv(rows, [

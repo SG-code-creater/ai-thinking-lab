@@ -467,7 +467,16 @@ function AdminInner() {
             >
               导出文档收集（uploads.csv）
             </a>
+            <a
+              href="/api/admin/export?type=wide"
+              className="rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-2 text-sm font-medium text-indigo-700 hover:bg-indigo-100"
+            >
+              导出统一宽表（wide.csv）
+            </a>
           </div>
+          <p className="mt-2 text-xs text-zinc-400">
+            宽表为每会话一行，含前/后测、时长、轮次、完成度与消息/上传计数，可直接喂统计软件做 ANOVA / 前后测差值分析。
+          </p>
         </section>
       </main>
     </div>

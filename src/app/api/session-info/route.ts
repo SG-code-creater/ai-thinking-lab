@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSessionInfo } from "@/lib/db";
+import { getSessionInfo, getSurveyStatus } from "@/lib/db";
 import { getArm } from "@/lib/arms";
 
 export const runtime = "nodejs";
@@ -23,6 +23,7 @@ export async function GET(req: NextRequest) {
         { status: 403 },
       );
     const arm = getArm(info.arm);
+    const survey = await getSurveyStatus(sessionId);
     return NextResponse.json({
       ok: true,
       arm: arm?.code,
@@ -30,6 +31,7 @@ export async function GET(req: NextRequest) {
       description: arm?.description,
       isAiChat: arm?.isAiChat,
       scopeGuarded: arm?.scopeGuarded,
+      survey,
     });
   } catch (e: any) {
     return NextResponse.json(
