@@ -56,6 +56,19 @@ function AdminInner() {
 
   // D2 反思深度批处理打分
   const [scoreBusy, setScoreBusy] = useState(false);
+  const [scoreResult, setScoreResult] = useState<{
+    processed: number;
+    scored: number;
+    errors: number;
+    details: {
+      sessionId: string;
+      arm: string;
+      score?: number;
+      reason?: string;
+      error?: string;
+    }[];
+  } | null>(null);
+  const [scoreError, setScoreError] = useState<string | null>(null);
 
   // 导出选项：格式（csv/xlsx）+ 按臂
   const [expFmt, setExpFmt] = useState<string>("csv");
@@ -186,17 +199,30 @@ function AdminInner() {
     if (!yes) return;
     setScoreBusy(true);
     setMsg(null);
+    setScoreResult(null);
+    setScoreError(null);
     try {
       const r = await fetch("/api/admin/score-reflection", {
         method: "POST",
       });
       const d = await r.json();
-      if (d.ok)
-        setMsg(
-          `反思打分完成：本批处理 ${d.processed} 条，成功 ${d.scored}，失败 ${d.errors}。未打完的会话可再次点击继续。`,
-        );
-      else setMsg("打分失败：" + (d.error || ""));
+      if (d.ok) {
+        setScoreResult(d);
+        if (d.processed === 0) {
+          setMsg(
+            "没有需要打分的会话：可能已全部打完，或这些会话还没有对话内容（solo 纯上传也会被跳过）。",
+          );
+        } else {
+          setMsg(
+            `反思打分完成：本批处理 ${d.processed} 条，成功 ${d.scored}，失败 ${d.errors}。未打完的会话可再次点击继续。`,
+          );
+        }
+      } else {
+        setScoreError("打分失败：" + (d.error || ""));
+        setMsg("打分失败：" + (d.error || ""));
+      }
     } catch (e: any) {
+      setScoreError("打分失败：" + (e?.message || "网络错误"));
       setMsg("打分失败：" + (e?.message || "网络错误"));
     } finally {
       setScoreBusy(false);
@@ -680,6 +706,56 @@ function AdminInner() {
               {scoreBusy ? "打分中…" : "批量反思打分（D2）"}
             </button>
           </div>
+          {scoreError && (
+            <div className="mt-3 rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-xs text-rose-700">
+              {scoreError}
+            </div>
+          )}
+          {scoreResult && (
+            <div className="mt-3 rounded-lg border border-zinc-200 bg-zinc-50 p-3">
+              <div className="mb-2 text-xs font-medium text-zinc-700">
+                本批结果：处理 {scoreResult.processed} 条，成功{" "}
+                {scoreResult.scored} 条，失败 {scoreResult.errors} 条
+              </div>
+              <ul className="max-h-64 space-y-1 overflow-auto text-xs">
+                {scoreResult.details.map((d, i) => (
+                  <li
+                    key={i}
+                    className="flex flex-wrap items-baseline gap-2 rounded bg-white px-2 py-1"
+                  >
+                    <span className="shrink-0 font-mono text-zinc-400">
+                      {String(d.sessionId).slice(0, 8)}
+                    </span>
+                    <span className="shrink-0 text-zinc-500">
+                      {d.arm === "socratic"
+                        ? "臂1"
+                        : d.arm === "free"
+                          ? "臂2"
+                          : d.arm === "solo"
+                            ? "臂3"
+                            : d.arm}
+                    </span>
+                    {typeof d.score === "number" ? (
+                      <span className="shrink-0 font-semibold text-emerald-700">
+                        分 {d.score}
+                      </span>
+                    ) : (
+                      <span className="shrink-0 font-semibold text-rose-600">
+                        失败
+                      </span>
+                    )}
+                    <span className="text-zinc-600">
+                      {d.reason || d.error || ""}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          <p className="mt-2 text-xs text-zinc-400">
+            评分标准（DeepSeek 依据对话内容判定，理由写入 reflection_reason 供抽样校验）：0
+            陈述 / 1 浅反思 / 2 深反思 / 3 批判反思。
+          </p>
           <p className="mt-2 text-xs text-zinc-400">
             文件名含臂标识（如 <code>messages_socratic.xlsx</code>）；不选「按臂」则导出全部。
           </p>
