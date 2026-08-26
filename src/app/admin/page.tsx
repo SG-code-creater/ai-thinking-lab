@@ -30,6 +30,7 @@ export default function AdminPage() {
 
 function AdminInner() {
   const { isSignedIn, user, isLoaded } = useUser();
+  const [adminAuthed, setAdminAuthed] = useState<boolean | null>(null);
   const [activeArm, setActiveArm] = useState<string>("none");
   const [armGen, setArmGen] = useState<string>("socratic");
   // armGenSynced = true 后下拉框才真正被允许编辑，避免「Loaded 之前看到默认 socratic」的误操作
@@ -131,11 +132,18 @@ function AdminInner() {
 
   useEffect(() => {
     if (isSignedIn) {
+      // 先确认白名单，非授权用户直接显示「无权限」，不再静默跑一堆 403
+      fetch("/api/admin/me")
+        .then((r) => r.json())
+        .then((d) => setAdminAuthed(!!d.authed))
+        .catch(() => setAdminAuthed(false));
       loadMeta();
       loadCodes();
       loadRules();
       loadSurveyQuestions();
       loadStats();
+    } else {
+      setAdminAuthed(null);
     }
   }, [isSignedIn]);
 
@@ -491,6 +499,30 @@ function AdminInner() {
             研究者登录
           </h1>
           <SignIn routing="hash" fallbackRedirectUrl="/admin" />
+        </div>
+      </div>
+    );
+
+  if (adminAuthed === null)
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-zinc-50">
+        <div className="text-sm text-zinc-400">校验权限中…</div>
+      </div>
+    );
+
+  if (adminAuthed === false)
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-zinc-50 px-4">
+        <div className="max-w-sm rounded-2xl border border-rose-200 bg-rose-50 p-6 text-center shadow-sm">
+          <h1 className="mb-2 text-base font-semibold text-rose-700">
+            无后台权限
+          </h1>
+          <p className="text-sm text-rose-600">
+            您已登录（{user?.primaryEmailAddress?.emailAddress}），但该邮箱不在管理员白名单中。
+          </p>
+          <p className="mt-3 text-xs text-rose-500">
+            请联系研究者将该邮箱加入 <code>ADMIN_EMAILS</code> 环境变量后刷新本页。
+          </p>
         </div>
       </div>
     );

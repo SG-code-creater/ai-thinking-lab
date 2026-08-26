@@ -1,10 +1,25 @@
 "use client";
 
-import { SignUp } from "@clerk/nextjs";
+import { SignUp, useUser } from "@clerk/nextjs";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
 export default function SignUpPage() {
+  const { isSignedIn, isLoaded } = useUser();
+  const router = useRouter();
+
+  useEffect(() => {
+    // 注册/登录成功后兜底跳研究后台。
+    // 注：Clerk hash 模式下 fallbackRedirectUrl 有时回跳首页，这里用 effect 补回，
+    // 同时让用户看到「注册成功」提示（延迟 1.2s 再跳，避免瞬间闪走）。
+    if (isLoaded && isSignedIn) {
+      const t = setTimeout(() => router.replace("/admin"), 1200);
+      return () => clearTimeout(t);
+    }
+  }, [isLoaded, isSignedIn, router]);
+
   if (!PUBLISHABLE_KEY) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-zinc-50 px-4">
@@ -23,7 +38,13 @@ export default function SignUpPage() {
         <h1 className="mb-4 text-lg font-semibold text-zinc-900">
           创建研究者账户
         </h1>
-        <SignUp routing="hash" fallbackRedirectUrl="/admin" />
+        {isSignedIn ? (
+          <div className="rounded-lg bg-emerald-50 px-3 py-3 text-sm font-medium text-emerald-700">
+            ✅ 注册成功，正在进入研究后台…
+          </div>
+        ) : (
+          <SignUp routing="hash" fallbackRedirectUrl="/admin" />
+        )}
       </div>
     </div>
   );
