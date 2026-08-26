@@ -373,6 +373,52 @@ export async function exportMessages(arm?: string): Promise<any[]> {
   return (data as any[]) ?? [];
 }
 
+/** 导出对话（按会话聚合，GAI 与用户回答分列，便于下游文本分析）。
+ *  每行一个会话：user_text（仅用户消息，多轮用空行+分隔符连接）/
+ *  assistant_text（仅 GAI 助手消息）。arm 可选：传入时仅导出该臂。 */
+export async function exportMessagesSplit(arm?: string): Promise<any[]> {
+  const db = requireDb();
+  let q = db
+    .from("sessions")
+    .select("id, participant_id, arm")
+    .order("started_at", { ascending: true });
+  if (arm) q = q.eq("arm", arm);
+  const { data: sessions, error: se } = await q;
+  if (se) throw new DbError(se.message);
+  if (!sessions || (sessions as any[]).length === 0) return [];
+
+  const ids = (sessions as any[]).map((s) => s.id);
+  const { data: msgs, error: me } = await db
+    .from("messages")
+    .select("session_id, role, content")
+    .in("session_id", ids)
+    .order("created_at", { ascending: true });
+  if (me) throw new DbError(me.message);
+
+  const userMap = new Map<string, string[]>();
+  const assistMap = new Map<string, string[]>();
+  for (const m of (msgs as any[]) ?? []) {
+    const text = m.content ?? "";
+    if (m.role === "user") {
+      const a = userMap.get(m.session_id) || [];
+      a.push(text);
+      userMap.set(m.session_id, a);
+    } else if (m.role === "assistant") {
+      const a = assistMap.get(m.session_id) || [];
+      a.push(text);
+      assistMap.set(m.session_id, a);
+    }
+  }
+
+  return (sessions as any[]).map((s) => ({
+    session_id: s.id,
+    participant_id: s.participant_id,
+    arm: s.arm,
+    user_text: (userMap.get(s.id) || []).join("\n\n---\n\n"),
+    assistant_text: (assistMap.get(s.id) || []).join("\n\n---\n\n"),
+  }));
+}
+
 /** 导出上传记录。arm 可选：传入时仅导出该臂 session 的上传。 */
 export async function exportUploads(arm?: string): Promise<any[]> {
   const db = requireDb();

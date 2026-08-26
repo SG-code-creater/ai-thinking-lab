@@ -903,6 +903,12 @@ function AdminInner() {
               导出对话
             </a>
             <a
+              href={`/api/admin/export?type=messages_split&format=${expFmt}${expArm !== "all" ? `&arm=${expArm}` : ""}`}
+              className="rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-2 text-sm font-medium text-indigo-700 hover:bg-indigo-100"
+            >
+              导出对话（GAI/用户分列）
+            </a>
+            <a
               href={`/api/admin/export?type=uploads&format=${expFmt}${expArm !== "all" ? `&arm=${expArm}` : ""}`}
               className="rounded-lg border border-zinc-200 px-3 py-2 text-sm text-zinc-600 hover:bg-zinc-50"
             >
@@ -986,6 +992,9 @@ function AdminInner() {
           </p>
           <p className="mt-1 text-xs text-zinc-400">
             反思分需先点「批量反思打分」由 DeepSeek 评级（0–3）。组间文本特征对比（提问密度/第一人称/行动词/情绪词）可用仓库 <code>scripts/text_features.py</code> 对 messages.csv 跑，无需新功能。
+          </p>
+          <p className="mt-1 text-xs text-zinc-400">
+            <b>「导出对话（GAI/用户分列）」</b>：每会话一行，直接给出 <code>user_text</code>（人的全部回答，多轮用「空行 + ---」分隔）与 <code>assistant_text</code>（GAI 的全部回答）两列，无需再按 <code>role</code> 解析，最适配下游文本分析工具（Python/R 按分隔符切轮次即可）。
           </p>
         </section>
 

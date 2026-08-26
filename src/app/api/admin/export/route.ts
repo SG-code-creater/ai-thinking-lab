@@ -3,6 +3,7 @@ import * as XLSX from "xlsx";
 import { getAdminEmailFromReq, isAuthorizedAdmin } from "@/lib/auth";
 import {
   exportMessages,
+  exportMessagesSplit,
   exportUploads,
   exportWide,
   exportPeerReviews,
@@ -120,7 +121,19 @@ export async function GET(req: NextRequest) {
       return buildResponse(rows, cols, format, `peer_reviews${armTag}`);
     }
 
-    // 默认导出对话（含 arm / participant 维度）
+    if (type === "messages_split") {
+      const rows = await exportMessagesSplit(arm || undefined);
+      const cols = [
+        "session_id",
+        "participant_id",
+        "arm",
+        "user_text",
+        "assistant_text",
+      ];
+      return buildResponse(rows, cols, format, `messages_split${armTag}`);
+    }
+
+    // 默认导出对话（含 arm / participant 维度，一行一条消息）
     const data = await exportMessages(arm || undefined);
     const rows = (data || []).map((m: any) => ({
       session_id: m.session_id,
