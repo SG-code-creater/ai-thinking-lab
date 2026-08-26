@@ -256,16 +256,41 @@ function AdminInner() {
       .filter((l) => l.length > 0);
   }
 
-  // 从文件导入题目（支持 .txt/.md/.csv 等纯文本；Word 请先复制文本）
-  function onSurveyFile(e: React.ChangeEvent<HTMLInputElement>) {
+  // 从文件导入题目（支持 .txt/.md/.csv/.docx/.pdf；旧版 .doc 不支持）
+  async function onSurveyFile(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
+    e.target.value = ""; // 允许重复选择同一文件
     if (!file) return;
-    const reader = new FileReader();
-    reader.onload = () => {
-      const text = String(reader.result || "");
-      setSurveyText(text);
-    };
-    reader.readAsText(file);
+    const name = file.name.toLowerCase();
+    const ext = name.includes(".") ? name.slice(name.lastIndexOf(".") + 1) : "";
+    setMsg(null);
+    try {
+      if (ext === "txt" || ext === "md" || ext === "csv") {
+        const text = await file.text();
+        setSurveyText(text);
+        const lines = text
+          .split(/\r?\n/)
+          .filter((l) => l.trim().length > 0).length;
+        setMsg(`已从 ${file.name} 导入文本（约 ${lines} 行，请检查后点"保存题目"）`);
+      } else if (ext === "docx" || ext === "pdf") {
+        const fd = new FormData();
+        fd.append("file", file);
+        const r = await fetch("/api/admin/survey-import", { method: "POST", body: fd });
+        const d = await r.json();
+        if (!d.ok) throw new Error(d.error || "解析失败");
+        setSurveyText(d.text);
+        const lines = d.text
+          .split(/\r?\n/)
+          .filter((l: string) => l.trim().length > 0).length;
+        setMsg(`已从 ${file.name} 解析出 ${lines} 行题目（请检查后点"保存题目"）`);
+      } else {
+        setMsg(
+          `不支持的文件类型 .${ext}：仅支持 .txt/.md/.csv/.docx/.pdf（旧版 .doc 请另存为 .docx）`,
+        );
+      }
+    } catch (err: any) {
+      setMsg("导入失败：" + (err?.message || "未知错误"));
+    }
   }
 
   async function saveSurveyQuestions() {
@@ -792,13 +817,13 @@ function AdminInner() {
               导入文档
               <input
                 type="file"
-                accept=".txt,.md,.csv,text/plain"
+                accept=".txt,.doc,.docx,.pdf,.md,.csv"
                 onChange={onSurveyFile}
                 className="hidden"
               />
             </label>
             <span className="text-xs text-zinc-400">
-              支持 .txt/.md/.csv 纯文本（Word 请先复制文本粘贴）
+              支持 .txt/.md/.csv 纯文本，以及 .docx/.pdf 文档（旧版 .doc 请另存为 .docx）
             </span>
           </div>
         </section>
