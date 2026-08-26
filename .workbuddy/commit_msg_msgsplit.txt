@@ -1,7 +1,0 @@
-feat(export): 新增「导出对话（GAI/用户分列）」入口
-
-- db.ts 新增 exportMessagesSplit(arm?)：按会话聚合，每行一个会话，输出 user_text（仅用户消息）/ assistant_text（仅 GAI 助手消息）两列，多轮用 "\n\n---\n\n" 分隔
-- 导出路由新增 type=messages_split 分支，列头 session_id/participant_id/arm/user_text/assistant_text
-- /admin 数据导出区新增「导出对话（GAI/用户分列）」按钮并补说明文案
-
-设计取舍：保留原 per-message 的「导出对话」（role+content，适合逐轮分析），新入口专供下游文本分析按列直接读取，无需解析角色前缀；与宽表 user_text/assistant_text 写法一致。
