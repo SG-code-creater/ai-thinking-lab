@@ -132,20 +132,26 @@ function AdminInner() {
 
   useEffect(() => {
     if (isSignedIn) {
-      // 先确认白名单，非授权用户直接显示「无权限」，不再静默跑一堆 403
+      // 先确认白名单，非授权用户直接显示「无权限」
+      // 不在这里拉任何 /api/admin/* 数据，避免非授权账号在控制台刷一堆 403 噪音
       fetch("/api/admin/me")
         .then((r) => r.json())
         .then((d) => setAdminAuthed(!!d.authed))
         .catch(() => setAdminAuthed(false));
-      loadMeta();
-      loadCodes();
-      loadRules();
-      loadSurveyQuestions();
-      loadStats();
     } else {
       setAdminAuthed(null);
     }
   }, [isSignedIn]);
+
+  // 验权通过后才拉数据；非授权账号不会触发任何后台接口
+  useEffect(() => {
+    if (adminAuthed !== true) return;
+    loadMeta();
+    loadCodes();
+    loadRules();
+    loadSurveyQuestions();
+    loadStats();
+  }, [adminAuthed]);
 
   // 切臂后，把下拉框的 armGen 跟着切到当前激活臂
   // （设计：分组码归属 = 当前激活臂，强行锁定）
@@ -523,6 +529,27 @@ function AdminInner() {
           <p className="mt-3 text-xs text-rose-500">
             请联系研究者将该邮箱加入 <code>ADMIN_EMAILS</code> 环境变量后刷新本页。
           </p>
+          <div className="mt-5 flex flex-col gap-2 sm:flex-row sm:justify-center">
+            <button
+              onClick={() => (window.location.href = "/")}
+              className="rounded-lg border border-rose-200 bg-white px-4 py-2 text-sm text-rose-700 hover:bg-rose-50"
+            >
+              返回研究首页
+            </button>
+            <button
+              onClick={async () => {
+                try {
+                  await fetch("/api/sign-out", { method: "POST" });
+                } catch {
+                  /* 忽略：即便接口失败也继续跳转 */
+                }
+                window.location.href = "/sign-in";
+              }}
+              className="rounded-lg border border-rose-300 bg-rose-100 px-4 py-2 text-sm text-rose-700 hover:bg-rose-200"
+            >
+              退出 / 切换账号
+            </button>
+          </div>
         </div>
       </div>
     );

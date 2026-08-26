@@ -1,0 +1,1495 @@
+npm verbose cli C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node.exe C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\bin\npm-cli.js
+npm info using npm@10.9.7
+npm info using node@v22.22.2
+npm verbose title npm install xlsx
+npm verbose argv "install" "xlsx" "--no-audit" "--no-fund" "--loglevel" "verbose"
+npm verbose logfile logs-max:10 dir:C:\Users\SGZ\AppData\Local\npm-cache\_logs\2026-08-25T10_08_37_238Z-
+npm verbose logfile C:\Users\SGZ\AppData\Local\npm-cache\_logs\2026-08-25T10_08_37_238Z-debug-0.log
+npm verbose shrinkwrap failed to load node_modules/.package-lock.json out of date, updated: node_modules
+npm http fetch GET 200 https://registry.npmmirror.com/xlsx 323ms (cache revalidated)
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@tailwindcss\oxide-wasm32-wasi
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\lightningcss-win32-arm64-msvc
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\lightningcss-linux-x64-musl
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\lightningcss-linux-x64-gnu
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\lightningcss-linux-arm64-musl
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\lightningcss-linux-arm64-gnu
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\lightningcss-linux-arm-gnueabihf
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\lightningcss-freebsd-x64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\lightningcss-darwin-x64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\lightningcss-darwin-arm64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\lightningcss-android-arm64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@unrs\resolver-binding-win32-ia32-msvc
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@unrs\resolver-binding-win32-arm64-msvc
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@unrs\resolver-binding-wasm32-wasi
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@unrs\resolver-binding-wasm32-wasi\node_modules\@emnapi\runtime
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@unrs\resolver-binding-openharmony-arm64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@unrs\resolver-binding-linux-x64-musl
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@unrs\resolver-binding-linux-x64-gnu
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@unrs\resolver-binding-linux-s390x-gnu
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@unrs\resolver-binding-linux-riscv64-musl
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@unrs\resolver-binding-linux-riscv64-gnu
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@unrs\resolver-binding-linux-ppc64-gnu
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@unrs\resolver-binding-linux-loong64-musl
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@unrs\resolver-binding-linux-loong64-gnu
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@unrs\resolver-binding-linux-arm64-musl
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@unrs\resolver-binding-linux-arm64-gnu
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@unrs\resolver-binding-linux-arm-musleabihf
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@unrs\resolver-binding-linux-arm-gnueabihf
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@unrs\resolver-binding-freebsd-x64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@unrs\resolver-binding-darwin-x64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@unrs\resolver-binding-darwin-arm64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@unrs\resolver-binding-android-arm64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@unrs\resolver-binding-android-arm-eabi
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@tailwindcss\oxide-win32-arm64-msvc
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@tailwindcss\oxide-linux-x64-musl
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@tailwindcss\oxide-linux-x64-gnu
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@tailwindcss\oxide-linux-arm64-musl
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@tailwindcss\oxide-linux-arm64-gnu
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@tailwindcss\oxide-darwin-x64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@tailwindcss\oxide-linux-arm-gnueabihf
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@tailwindcss\oxide-android-arm64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@tailwindcss\oxide-darwin-arm64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@tailwindcss\oxide-freebsd-x64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@next\swc-win32-arm64-msvc
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@next\swc-linux-x64-gnu
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@next\swc-linux-x64-musl
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@next\swc-linux-arm64-musl
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@next\swc-linux-arm64-gnu
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@next\swc-darwin-arm64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@next\swc-darwin-x64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@img\sharp-linuxmusl-x64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@img\sharp-win32-ia32
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@img\sharp-win32-arm64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@img\sharp-webcontainers-wasm32
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@img\sharp-linuxmusl-arm64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@img\sharp-linux-x64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@img\sharp-linux-s390x
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@img\sharp-linux-ppc64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@img\sharp-linux-riscv64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@img\sharp-linux-arm64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@img\sharp-libvips-linuxmusl-x64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@img\sharp-linux-arm
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@img\sharp-libvips-linux-x64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@img\sharp-libvips-linux-riscv64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@img\sharp-libvips-linuxmusl-arm64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@img\sharp-libvips-linux-s390x
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@img\sharp-libvips-linux-ppc64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@img\sharp-libvips-linux-arm64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@img\sharp-libvips-linux-arm
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@img\sharp-libvips-darwin-x64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@img\sharp-freebsd-wasm32
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@img\sharp-darwin-arm64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@img\sharp-darwin-x64
+npm verbose reify failed optional dependency D:\coder work\v2\my-next-app\node_modules\@img\sharp-libvips-darwin-arm64
+npm http cache @emnapi/runtime@https://registry.npmmirror.com/@emnapi/runtime/-/runtime-1.10.0.tgz 0ms (cache hit)
+npm warn cleanup Failed to remove some directories [
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\.sharp-libvips-darwin-arm64-SwINhFdt',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\.sharp-darwin-x64-JO5pC8Q2',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\.sharp-darwin-arm64-5PFnSnkj',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\.sharp-freebsd-wasm32-LrRLB9Ps',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\.sharp-libvips-darwin-x64-thROoYKg',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\.sharp-libvips-linux-arm-ZvmHNf9O',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\.sharp-libvips-linux-arm64-RlzgWUyZ',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\.sharp-libvips-linux-ppc64-SGk61tza',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\.sharp-libvips-linux-s390x-ySpnC3oj',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\.sharp-libvips-linuxmusl-arm64-tIgmMkIw',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\.sharp-libvips-linux-riscv64-Xsds8Ojq',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\.sharp-libvips-linux-x64-RjSl72oA',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\.sharp-linux-arm-tgq2TSi2',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\.sharp-libvips-linuxmusl-x64-BH3uNKc9',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\.sharp-linux-arm64-nojE3UtV',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\.sharp-linux-riscv64-1SEOd92n',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\.sharp-linux-ppc64-BY1Ux195',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\.sharp-linux-s390x-Hkq0xE1q',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\.sharp-linux-x64-TRpE8QSs',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\.sharp-linuxmusl-arm64-Osxxf03j',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\.sharp-webcontainers-wasm32-6IDz2n2k',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\.sharp-win32-arm64-UBjPcgzX',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\.sharp-win32-ia32-FT6gXUWy',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\.sharp-linuxmusl-x64-shV1myYi',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@next\\.swc-darwin-x64-KiFlySPN',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@next\\.swc-darwin-arm64-6x0pmhD9',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@next\\.swc-linux-arm64-gnu-p9ZgXZov',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@next\\.swc-linux-arm64-musl-cCSdEPzI',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@next\\.swc-linux-x64-musl-UTkONspN',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@next\\.swc-linux-x64-gnu-9ub7JKvC',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@next\\.swc-win32-arm64-msvc-QKikSno0',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@tailwindcss\\.oxide-freebsd-x64-0zB0UwiW',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@tailwindcss\\.oxide-darwin-arm64-yKrSsj1N',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@tailwindcss\\.oxide-android-arm64-ELTjp37s',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@tailwindcss\\.oxide-linux-arm-gnueabihf-wDwklk6O',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@tailwindcss\\.oxide-darwin-x64-x83SeEEf',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@tailwindcss\\.oxide-linux-arm64-gnu-GEiEcvwC',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@tailwindcss\\.oxide-linux-arm64-musl-YNNrME86',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@tailwindcss\\oxide-wasm32-wasi',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\lightningcss-win32-arm64-msvc',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\lightningcss-linux-x64-musl',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\lightningcss-linux-x64-gnu',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\lightningcss-linux-arm64-musl',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\lightningcss-linux-arm64-gnu',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\lightningcss-linux-arm-gnueabihf',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\lightningcss-freebsd-x64',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\lightningcss-darwin-x64',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\lightningcss-darwin-arm64',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\lightningcss-android-arm64',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@unrs\\resolver-binding-win32-ia32-msvc',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@unrs\\resolver-binding-win32-arm64-msvc',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@unrs\\resolver-binding-wasm32-wasi',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@unrs\\resolver-binding-wasm32-wasi\\node_modules\\@emnapi\\runtime',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@unrs\\resolver-binding-openharmony-arm64',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@unrs\\resolver-binding-linux-x64-musl',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@unrs\\resolver-binding-linux-x64-gnu',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@unrs\\resolver-binding-linux-s390x-gnu',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@unrs\\resolver-binding-linux-riscv64-musl',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@unrs\\resolver-binding-linux-riscv64-gnu',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@unrs\\resolver-binding-linux-ppc64-gnu',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@unrs\\resolver-binding-linux-loong64-musl',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@unrs\\resolver-binding-linux-loong64-gnu',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@unrs\\resolver-binding-linux-arm64-musl',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@unrs\\resolver-binding-linux-arm64-gnu',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@unrs\\resolver-binding-linux-arm-musleabihf',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@unrs\\resolver-binding-linux-arm-gnueabihf',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@unrs\\resolver-binding-freebsd-x64',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@unrs\\resolver-binding-darwin-x64',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@unrs\\resolver-binding-darwin-arm64',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@unrs\\resolver-binding-android-arm64',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@unrs\\resolver-binding-android-arm-eabi',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@tailwindcss\\oxide-win32-arm64-msvc',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@tailwindcss\\oxide-linux-x64-musl',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@tailwindcss\\oxide-linux-x64-gnu',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@tailwindcss\\oxide-linux-arm64-musl',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@tailwindcss\\oxide-linux-arm64-gnu',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@tailwindcss\\oxide-darwin-x64',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@tailwindcss\\oxide-linux-arm-gnueabihf',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@tailwindcss\\oxide-android-arm64',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@tailwindcss\\oxide-darwin-arm64',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@tailwindcss\\oxide-freebsd-x64',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@next\\swc-win32-arm64-msvc',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@next\\swc-linux-x64-gnu',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@next\\swc-linux-x64-musl',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@next\\swc-linux-arm64-musl',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@next\\swc-linux-arm64-gnu',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@next\\swc-darwin-arm64',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@next\\swc-darwin-x64',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\sharp-linuxmusl-x64',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\sharp-win32-ia32',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\sharp-win32-arm64',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\sharp-webcontainers-wasm32',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\sharp-linuxmusl-arm64',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\sharp-linux-x64',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\sharp-linux-s390x',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\sharp-linux-ppc64',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\sharp-linux-riscv64',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\sharp-linux-arm64',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\sharp-libvips-linuxmusl-x64',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     'D:\\coder work\\v2\\my-next-app\\node_modules\\@img\\sharp-linux-arm',
+npm warn cleanup     Error: [safe-delete][SAFE_DELETE_BULK_GUARD_ERROR] state lock timeout
+npm warn cleanup         at checkBulkDeleteGuard (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:222:19)
+npm warn cleanup         at tryTrash (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:546:5)
+npm warn cleanup         at tryRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:722:5)
+npm warn cleanup         at wrappedPromisesRm (D:\software\workbuddy\resources\app.asar.unpacked\cli\vendor\shim\genie-safe-delete.cjs:766:15)
+npm warn cleanup         at _rm (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1352:25)
+npm warn cleanup         at [removeTrash] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:1355:21)
+npm warn cleanup         at [reifyPackages] (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:349:29)
+npm warn cleanup         at async Arborist.reify (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:149:5)
+npm warn cleanup         at async Install.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\commands\install.js:150:5)
+npm warn cleanup         at async Npm.exec (C:\Users\SGZ\.workbuddy\binaries\node\versions\22.22.2\node_modules\npm\lib\npm.js:207:9)
+npm warn cleanup   ],
+npm warn cleanup   ... 12 more items
+npm warn cleanup ]
+
+changed 38 packages in 5m
+npm verbose cwd D:\coder work\v2\my-next-app
+npm verbose os Windows_NT 10.0.26200
+npm verbose node v22.22.2
+npm verbose npm  v10.9.7
+npm verbose exit 0
+npm info ok
